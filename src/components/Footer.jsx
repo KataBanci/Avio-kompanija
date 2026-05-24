@@ -1,16 +1,14 @@
-import { Container, Row, Col } from 'react-bootstrap'
+import { Container } from 'react-bootstrap'
 
 const Footer = () => {
   const currentYear = new Date().getFullYear()
 
   return (
-    <footer>
+    <footer className='footer'>
       <Container>
-        <Row>
-          <Col className="text-center py-3">
-            <p>&copy; {currentYear} SkyWings Airlines. Sva prava zadrzana</p>
-          </Col>
-        </Row>
+        <p>
+          &copy; {currentYear} AirVista. All rights reserved.
+        </p>
       </Container>
     </footer>
   )

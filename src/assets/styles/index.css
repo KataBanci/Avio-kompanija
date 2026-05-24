@@ -1,0 +1,403 @@
+main {
+  min-height: 80vh;
+  user-select: none;
+}
+
+body {
+  background-color: #fafafa;
+}
+
+.custom-navbar {
+  background-color: white;
+  height: 84px;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  font-size: 28px;
+  font-weight: 700;
+  color: black !important;
+  text-decoration: none;
+}
+
+.logo {
+  width: 50px;
+  height: 50px;
+  object-fit: contain;
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 25px;
+}
+
+.nav-links .nav-link {
+  color: black !important;
+  font-size: 17px;
+  font-weight: 600;
+}
+
+.signin-btn {
+  background-color: black;
+  color: white !important;
+  padding: 12px 22px !important;
+  border-radius: 12px;
+  margin-left: 15px;
+}
+
+.hero-section {
+  height: 520px;
+
+  background-image:
+    linear-gradient(
+      rgba(10, 35, 55, 0.55),
+      rgba(10, 35, 55, 0.55)
+    ),
+    url('../../../public/images/plane-hero.jpg');
+
+  background-size: cover;
+  background-position: center;
+}
+
+.hero-overlay {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  color: white;
+}
+
+.hero-content h1 {
+  font-size: 86px;
+  font-weight: 700;
+  margin-bottom: 20px;
+}
+
+.hero-content p {
+  font-size: 29px;
+  max-width: 1200px;
+}
+
+.deals-section {
+  text-align: center;
+  padding: 80px 20px;
+}
+
+.deals-section h2 {
+  font-size: 52px;
+  font-weight: 700;
+  color: black;
+}
+
+.deals-section p {
+  font-size: 22px;
+  color: #555;
+}
+
+.deals-container {
+  margin-top: 50px;
+
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+
+  gap: 30px;
+
+  max-width: 1600px;
+
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.deal-card {
+  background-color: white;
+
+  border: 1px solid #e1e1e1;
+
+  border-radius: 22px;
+
+  padding: 30px;
+
+  text-align: left;
+
+  min-height: 430px;
+
+  display: flex;
+
+  flex-direction: column;
+
+  justify-content: space-between;
+}
+
+.seats-left {
+  color: orangered !important;
+  font-size: 17px !important;
+  margin-bottom: 18px;
+}
+
+.airline {
+  color: #444 !important;
+  font-size: 18px !important;
+  margin-bottom: 25px;
+}
+
+.route h3 {
+  font-size: 30px;
+  font-weight: 400;
+  color: black;
+}
+
+.route h3 span {
+  font-size: 17px;
+  color: #7a7a7a;
+}
+
+.route hr {
+  border: none;
+  border-top: 1px solid #ddd;
+  margin: 10px 0 15px;
+}
+
+.date {
+  margin-top: 22px;
+  font-size: 19px !important;
+  color: #444 !important;
+}
+
+.price {
+  margin-top: 20px;
+  font-size: 42px;
+  color: black;
+}
+
+.price span {
+  font-size: 18px;
+  margin-left: 10px;
+  color: #9aa0a6;
+  text-decoration: line-through;
+}
+
+.book-btn {
+  width: 100%;
+
+  height: 58px;
+
+  margin-top: auto;
+
+  border: none;
+
+  border-radius: 14px;
+
+  background-color: black;
+
+  color: white;
+
+  font-size: 18px;
+
+  font-weight: 700;
+}
+
+.book-btn:hover {
+  background-color: #222;
+}
+.seats-placeholder {
+  height: 30px;
+  margin-bottom: 18px;
+}
+
+@media (max-width: 1200px) {
+  .deals-container {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .deals-container {
+    grid-template-columns: 1fr;
+  }
+
+  .hero-content h1 {
+    font-size: 50px;
+  }
+
+  .hero-content p {
+    font-size: 20px;
+    padding: 0 20px;
+  }
+}
+
+.destinations-section {
+  background-color: #f7f7f7;
+  padding: 70px 20px 90px;
+}
+
+.section-container {
+  max-width: 1540px;
+  margin: 0 auto;
+}
+
+.destinations-section h2 {
+  font-size: 42px;
+  font-weight: 700;
+  color: black;
+  margin-bottom: 12px;
+}
+
+.destinations-section > .section-container > p {
+  font-size: 21px;
+  color: #3d4650;
+  margin-bottom: 60px;
+}
+
+.destinations-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 30px;
+}
+
+.destination-card {
+  height: 485px;
+  border-radius: 18px;
+  background-size: cover;
+  background-position: center;
+  overflow: hidden;
+}
+
+.destination-overlay {
+  height: 100%;
+  padding: 30px;
+  color: white;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+
+  background: linear-gradient(
+    rgba(0, 0, 0, 0.15),
+    rgba(0, 0, 0, 0.75)
+  );
+}
+
+.destination-overlay h3 {
+  font-size: 31px;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+
+.destination-overlay p {
+  font-size: 17px;
+  font-weight: 700;
+  margin-bottom: 30px;
+}
+
+.destination-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.destination-bottom span {
+  font-size: 17px;
+  font-weight: 700;
+}
+
+.destination-bottom button {
+  border: none;
+  border-radius: 13px;
+  padding: 13px 18px;
+  background-color: rgba(90, 90, 90, 0.85);
+  color: white;
+  font-size: 17px;
+  font-weight: 700;
+}
+
+.community-section {
+  background-color: white;
+  text-align: center;
+  padding: 95px 20px 100px;
+  border-bottom: 1px solid #ddd;
+}
+
+.community-icon {
+  font-size: 48px;
+  margin-bottom: 25px;
+}
+
+.community-section h2 {
+  font-size: 44px;
+  font-weight: 700;
+  color: black;
+  margin-bottom: 20px;
+}
+
+.community-section p {
+  max-width: 1000px;
+  margin: 0 auto;
+  font-size: 23px;
+  line-height: 1.5;
+  color: #38424d;
+}
+
+.community-buttons {
+  margin-top: 40px;
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+.create-btn {
+  background-color: black;
+  color: white;
+  border: none;
+  border-radius: 14px;
+  padding: 20px 42px;
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.learn-btn {
+  background-color: white;
+  color: black;
+  border: 1px solid #d1d1d1;
+  border-radius: 14px;
+  padding: 20px 42px;
+  font-size: 18px;
+  font-weight: 700;
+}
+
+@media (max-width: 1200px) {
+  .destinations-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .destinations-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .community-buttons {
+    flex-direction: column;
+  }
+}
+
+.footer {
+  background-color: white;
+
+  border-top: 1px solid #ddd;
+
+  text-align: center;
+
+  padding: 35px 20px;
+
+  color: #444;
+
+  font-size: 18px;
+}
+
+.footer p {
+  margin: 0;
+}

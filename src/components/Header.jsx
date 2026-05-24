@@ -1,65 +1,51 @@
-import { Navbar, Container, Nav, NavDropdown, Form, Button } from 'react-bootstrap'
-import { FaPlaneDeparture, FaUser } from 'react-icons/fa'
-import { LinkContainer } from 'react-router-bootstrap'
+import { Navbar, Nav, Container } from 'react-bootstrap';
+import { LinkContainer } from 'react-router-bootstrap';
 
 const Header = () => {
   return (
     <header>
-      <Navbar bg="light" expand="lg" data-bs-theme="light">
-        <Container fluid>
-
-          {/* LOGO */}
-          <LinkContainer to="/">
-            <Navbar.Brand>
-              <FaPlaneDeparture className="me-2" />
-              SkyWings Airlines
+      <Navbar className='custom-navbar' expand='lg'>
+        <Container>
+          <LinkContainer to='/'>
+            <Navbar.Brand className='brand'>
+              <img src='/images/logo.png' alt='AirVista' className='logo' />
+              <span>AirVista</span>
             </Navbar.Brand>
           </LinkContainer>
 
-          {/* TOGGLE (hamburger) */}
-          <Navbar.Toggle />
+          <Navbar.Toggle aria-controls='basic-navbar-nav' />
 
-          {/* NAVBAR CONTENT */}
-          <Navbar.Collapse>
-            <Nav className="me-auto">
-              <LinkContainer to="/">
+          <Navbar.Collapse id='basic-navbar-nav'>
+            <Nav className='ms-auto nav-links'>
+              <LinkContainer to='/'>
                 <Nav.Link>Home</Nav.Link>
               </LinkContainer>
 
-              <Nav.Link>Features</Nav.Link>
-              <Nav.Link>Pricing</Nav.Link>
-              <Nav.Link>About</Nav.Link>
+              <LinkContainer to='/flights'>
+                <Nav.Link>Flights</Nav.Link>
+              </LinkContainer>
 
-              <NavDropdown title="Dropdown">
-                <NavDropdown.Item>Action</NavDropdown.Item>
-                <NavDropdown.Item>Another action</NavDropdown.Item>
-                <NavDropdown.Item>Something else</NavDropdown.Item>
-                <NavDropdown.Divider />
-                <NavDropdown.Item>Separated link</NavDropdown.Item>
-              </NavDropdown>
-            </Nav>
+              <LinkContainer to='/destinations'>
+                <Nav.Link>Destinations</Nav.Link>
+              </LinkContainer>
 
-            {/* SEARCH */}
-            <Form className="d-flex">
-              <Form.Control type="search" placeholder="Search" className="me-2" />
-              <Button variant="secondary">Search</Button>
-            </Form>
+              <LinkContainer to='/about'>
+                <Nav.Link>About Us</Nav.Link>
+              </LinkContainer>
 
-            {/* LOGIN */}
-            <Nav className="ms-3">
-              <LinkContainer to="/login">
-                <Nav.Link>
-                  <FaUser className="me-1" /> Prijava
-                </Nav.Link>
+              <LinkContainer to='/contact'>
+                <Nav.Link>Contact</Nav.Link>
+              </LinkContainer>
+
+              <LinkContainer to='/login'>
+                <Nav.Link className='signin-btn'>Sign In</Nav.Link>
               </LinkContainer>
             </Nav>
-
           </Navbar.Collapse>
-
         </Container>
       </Navbar>
     </header>
-  )
-}
+  );
+};
 
-export default Header
+export default Header;

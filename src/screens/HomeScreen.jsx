@@ -1,22 +1,205 @@
-import React from 'react'
-import { Row, Col } from 'react-bootstrap'
-import Flight from '../components/Flight'
-import flights from '../flights_list'
-
 const HomeScreen = () => {
   return (
     <>
-      <h1>Dostupni letovi</h1>
+      <section className='hero-section'>
+        <div className='hero-overlay'>
+          <div className='hero-content'>
+            <h1>Fly Smarter, Travel Better</h1>
 
-      <Row>
-        {flights.map((flight) => (
-          <Col key={flight._id} sm={12} md={6} lg={4} xl={3}>
-            <Flight flight={flight} />
-          </Col>
-        ))}
-      </Row>
+            <p>
+              Discover top destinations, book flights in seconds, and enjoy a
+              seamless travel experience.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section className='deals-section'>
+        <h2>Limited time deals</h2>
+        <p>Book now before these offers are gone</p>
+
+        <div className='deals-container'>
+          <div className='deal-card'>
+            <p className='seats-left'>ⓘ Only 2 seats left</p>
+            <p className='airline'>✈ Air France</p>
+
+            <div className='route'>
+              <h3>
+                New York <span>JFK</span>
+              </h3>
+              <hr />
+              <h3>
+                Paris <span>CDG</span>
+              </h3>
+            </div>
+
+            <p className='date'>Apr 25 - May 2</p>
+
+            <div className='price'>
+              $299 <span>$549</span>
+            </div>
+
+            <button className='book-btn'>Book now</button>
+          </div>
+
+          <div className='deal-card'>
+            <p className='seats-placeholder'>‎</p>
+            <p className='airline'>✈ Japan Airlines</p>
+
+            <div className='route'>
+              <h3>
+                Los Angeles <span>LAX</span>
+              </h3>
+              <hr />
+              <h3>
+                Tokyo <span>NRT</span>
+              </h3>
+            </div>
+
+            <p className='date'>May 10 - May 20</p>
+
+            <div className='price'>
+              $425 <span>$780</span>
+            </div>
+
+            <button className='book-btn'>Book now</button>
+          </div>
+
+          <div className='deal-card'>
+            <p className='seats-left'>ⓘ Only 3 seats left</p>
+            <p className='airline'>✈ Emirates</p>
+
+            <div className='route'>
+              <h3>
+                London <span>LHR</span>
+              </h3>
+              <hr />
+              <h3>
+                Dubai <span>DXB</span>
+              </h3>
+            </div>
+
+            <p className='date'>Jun 5 - Jun 15</p>
+
+            <div className='price'>
+              $385 <span>$650</span>
+            </div>
+
+            <button className='book-btn'>Book now</button>
+          </div>
+
+          <div className='deal-card'>
+            <p className='seats-placeholder'>‎</p>
+            <p className='airline'>✈ Iberia</p>
+
+            <div className='route'>
+              <h3>
+                Miami <span>MIA</span>
+              </h3>
+              <hr />
+              <h3>
+                Barcelona <span>BCN</span>
+              </h3>
+            </div>
+
+            <p className='date'>Apr 30 - May 8</p>
+
+            <div className='price'>
+              $315 <span>$590</span>
+            </div>
+
+            <button className='book-btn'>Book now</button>
+          </div>
+        </div>
+      </section>
+
+      <section className='destinations-section'>
+        <div className='section-container'>
+          <h2>Popular destinations</h2>
+          <p>Explore top cities around the world</p>
+
+          <div className='destinations-grid'>
+            <div
+              className='destination-card'
+              style={{ backgroundImage: "url('/images/london.jpg')" }}
+            >
+              <div className='destination-overlay'>
+                <h3>London</h3>
+                <p>United Kingdom</p>
+
+                <div className='destination-bottom'>
+                  <span>from $542</span>
+                  <button>Explore →</button>
+                </div>
+              </div>
+            </div>
+
+            <div
+              className='destination-card'
+              style={{ backgroundImage: "url('/images/milan.jpg')" }}
+            >
+              <div className='destination-overlay'>
+                <h3>Milan</h3>
+                <p>Italy</p>
+
+                <div className='destination-bottom'>
+                  <span>from $628</span>
+                  <button>Explore →</button>
+                </div>
+              </div>
+            </div>
+
+            <div
+              className='destination-card'
+              style={{ backgroundImage: "url('/images/newyork.jpg')" }}
+            >
+              <div className='destination-overlay'>
+                <h3>New York</h3>
+                <p>United States</p>
+
+                <div className='destination-bottom'>
+                  <span>from $389</span>
+                  <button>Explore →</button>
+                </div>
+              </div>
+            </div>
+
+            <div
+              className='destination-card'
+              style={{ backgroundImage: "url('/images/budapest.jpg')" }}
+            >
+              <div className='destination-overlay'>
+                <h3>Budapest</h3>
+                <p>Hungary</p>
+
+                <div className='destination-bottom'>
+                  <span>from $456</span>
+                  <button>Explore →</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className='community-section'>
+        <div className='community-icon'>👤+</div>
+
+        <h2>Join our community</h2>
+
+        <p>
+          If you haven't registered yet, sign up on our website to unlock
+          exclusive deals, earn rewards, and get personalized travel
+          recommendations.
+        </p>
+
+        <div className='community-buttons'>
+          <button className='create-btn'>Create an account</button>
+          <button className='learn-btn'>Learn more</button>
+        </div>
+      </section>
     </>
-  )
-}
+  );
+};
 
-export default HomeScreen
+export default HomeScreen;

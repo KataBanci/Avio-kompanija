@@ -7,9 +7,9 @@ import {
   RouterProvider,
 } from 'react-router-dom'
 import 'bootswatch/dist/litera/bootstrap.min.css'
-import './styles/index.css'
 import App from './App'
 import HomeScreen from './screens/HomeScreen'
+import './assets/styles/index.css';
 
 const router = createBrowserRouter(
   createRoutesFromElements(
