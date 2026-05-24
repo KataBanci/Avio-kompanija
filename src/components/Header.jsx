@@ -37,9 +37,14 @@ const Header = () => {
                 <Nav.Link>Contact</Nav.Link>
               </LinkContainer>
 
-              <LinkContainer to='/login'>
-                <Nav.Link className='signin-btn'>Sign In</Nav.Link>
+              <LinkContainer to='/signin'>
+                <Nav.Link className='signin-nav-btn'>
+                  Sign In
+                </Nav.Link>
               </LinkContainer>
+
+            
+
             </Nav>
           </Navbar.Collapse>
         </Container>

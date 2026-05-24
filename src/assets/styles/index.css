@@ -1,63 +1,99 @@
+* {
+  box-sizing: border-box;
+  font-family: Calibri, Arial, sans-serif;
+}
+
+body {
+  margin: 0;
+  background-color: #fafafa;
+  color: #1f2933;
+}
+
 main {
   min-height: 80vh;
   user-select: none;
 }
 
-body {
-  background-color: #fafafa;
+h1 {
+  font-size: 52px;
+  font-weight: 700;
+  color: #000;
 }
+
+h2 {
+  font-size: 34px;
+  font-weight: 700;
+  color: #000;
+}
+
+h3 {
+  font-size: 26px;
+  font-weight: 600;
+}
+
+p {
+  font-size: 17px;
+  line-height: 1.6;
+  color: #3d4650;
+}
+
+button,
+input,
+textarea,
+select {
+  font-family: Calibri, Arial, sans-serif;
+}
+
+/* NAVBAR */
 
 .custom-navbar {
   background-color: white;
-  height: 84px;
+  min-height: 80px;
 }
 
 .brand {
   display: flex;
   align-items: center;
-  gap: 14px;
-  font-size: 28px;
+  gap: 12px;
+  font-size: 26px;
   font-weight: 700;
-  color: black !important;
+  color: #000 !important;
   text-decoration: none;
 }
 
 .logo {
-  width: 50px;
-  height: 50px;
+  width: 48px;
+  height: 48px;
   object-fit: contain;
 }
 
 .nav-links {
   display: flex;
   align-items: center;
-  gap: 25px;
+  gap: 22px;
 }
 
 .nav-links .nav-link {
-  color: black !important;
-  font-size: 17px;
+  color: #000 !important;
+  font-size: 16px;
   font-weight: 600;
 }
 
 .signin-btn {
-  background-color: black;
+  background-color: #000;
   color: white !important;
-  padding: 12px 22px !important;
+  padding: 11px 20px !important;
   border-radius: 12px;
-  margin-left: 15px;
+  margin-left: 12px;
 }
 
+/* HOME HERO */
+
 .hero-section {
-  height: 520px;
-
+  height: 500px;
   background-image:
-    linear-gradient(
-      rgba(10, 35, 55, 0.55),
-      rgba(10, 35, 55, 0.55)
-    ),
+    linear-gradient(rgba(10, 35, 55, 0.55), rgba(10, 35, 55, 0.55)),
     url('../../../public/images/plane-hero.jpg');
-
   background-size: cover;
   background-position: center;
 }
@@ -72,194 +108,165 @@ body {
 }
 
 .hero-content h1 {
-  font-size: 86px;
-  font-weight: 700;
-  margin-bottom: 20px;
+  font-size: 72px;
+  margin-bottom: 18px;
+  color: white;
 }
 
 .hero-content p {
-  font-size: 29px;
-  max-width: 1200px;
+  font-size: 24px;
+  max-width: 1000px;
+  color: white;
 }
+
+/* COMMON */
+
+.section-container,
+.flights-container,
+.about-container,
+.contact-container {
+  max-width: 1180px;
+  margin: 0 auto;
+}
+
+.book-btn,
+.search-flight-btn,
+.create-btn,
+.message-box button {
+  border: none;
+  border-radius: 12px;
+  background-color: #000;
+  color: white;
+  font-size: 17px;
+  font-weight: 700;
+}
+
+.book-btn:hover,
+.search-flight-btn:hover,
+.create-btn:hover,
+.message-box button:hover {
+  background-color: #222;
+}
+
+/* DEALS */
 
 .deals-section {
   text-align: center;
-  padding: 80px 20px;
+  padding: 70px 20px;
 }
 
 .deals-section h2 {
-  font-size: 52px;
-  font-weight: 700;
-  color: black;
+  font-size: 42px;
 }
 
-.deals-section p {
-  font-size: 22px;
+.deals-section > p {
+  font-size: 19px;
   color: #555;
 }
 
 .deals-container {
-  margin-top: 50px;
-
+  margin: 45px auto 0;
+  max-width: 1540px;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-
-  gap: 30px;
-
-  max-width: 1600px;
-
-  margin-left: auto;
-  margin-right: auto;
+  gap: 28px;
 }
 
 .deal-card {
   background-color: white;
-
   border: 1px solid #e1e1e1;
-
-  border-radius: 22px;
-
-  padding: 30px;
-
+  border-radius: 20px;
+  padding: 28px;
   text-align: left;
-
-  min-height: 430px;
-
+  min-height: 420px;
   display: flex;
-
   flex-direction: column;
+}
 
-  justify-content: space-between;
+.seats-left,
+.seats-placeholder {
+  height: 28px;
+  margin-bottom: 15px;
 }
 
 .seats-left {
   color: orangered !important;
-  font-size: 17px !important;
-  margin-bottom: 18px;
+  font-size: 16px !important;
 }
 
 .airline {
   color: #444 !important;
-  font-size: 18px !important;
-  margin-bottom: 25px;
+  font-size: 17px !important;
+  margin-bottom: 22px;
 }
 
 .route h3 {
-  font-size: 30px;
+  font-size: 28px;
   font-weight: 400;
-  color: black;
+  color: #000;
 }
 
 .route h3 span {
-  font-size: 17px;
+  font-size: 16px;
   color: #7a7a7a;
 }
 
 .route hr {
   border: none;
   border-top: 1px solid #ddd;
-  margin: 10px 0 15px;
+  margin: 10px 0 14px;
 }
 
 .date {
-  margin-top: 22px;
-  font-size: 19px !important;
+  margin-top: 20px;
+  font-size: 17px !important;
   color: #444 !important;
 }
 
 .price {
-  margin-top: 20px;
-  font-size: 42px;
-  color: black;
+  margin-top: 18px;
+  font-size: 38px;
+  color: #000;
 }
 
 .price span {
-  font-size: 18px;
-  margin-left: 10px;
+  font-size: 17px;
+  margin-left: 8px;
   color: #9aa0a6;
   text-decoration: line-through;
 }
 
 .book-btn {
   width: 100%;
-
-  height: 58px;
-
+  height: 56px;
   margin-top: auto;
-
-  border: none;
-
-  border-radius: 14px;
-
-  background-color: black;
-
-  color: white;
-
-  font-size: 18px;
-
-  font-weight: 700;
 }
 
-.book-btn:hover {
-  background-color: #222;
-}
-.seats-placeholder {
-  height: 30px;
-  margin-bottom: 18px;
-}
-
-@media (max-width: 1200px) {
-  .deals-container {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
-@media (max-width: 768px) {
-  .deals-container {
-    grid-template-columns: 1fr;
-  }
-
-  .hero-content h1 {
-    font-size: 50px;
-  }
-
-  .hero-content p {
-    font-size: 20px;
-    padding: 0 20px;
-  }
-}
+/* DESTINATIONS */
 
 .destinations-section {
   background-color: #f7f7f7;
   padding: 70px 20px 90px;
 }
 
-.section-container {
-  max-width: 1540px;
-  margin: 0 auto;
-}
-
 .destinations-section h2 {
-  font-size: 42px;
-  font-weight: 700;
-  color: black;
-  margin-bottom: 12px;
+  font-size: 40px;
+  margin-bottom: 10px;
 }
 
 .destinations-section > .section-container > p {
-  font-size: 21px;
-  color: #3d4650;
-  margin-bottom: 60px;
+  font-size: 19px;
+  margin-bottom: 55px;
 }
 
 .destinations-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 30px;
+  gap: 28px;
 }
 
 .destination-card {
-  height: 485px;
+  height: 460px;
   border-radius: 18px;
   background-size: cover;
   background-position: center;
@@ -268,29 +275,25 @@ body {
 
 .destination-overlay {
   height: 100%;
-  padding: 30px;
+  padding: 28px;
   color: white;
-
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
-
-  background: linear-gradient(
-    rgba(0, 0, 0, 0.15),
-    rgba(0, 0, 0, 0.75)
-  );
+  background: linear-gradient(rgba(0, 0, 0, 0.15), rgba(0, 0, 0, 0.75));
 }
 
 .destination-overlay h3 {
-  font-size: 31px;
+  font-size: 30px;
   font-weight: 700;
-  margin-bottom: 8px;
+  color: white;
 }
 
 .destination-overlay p {
-  font-size: 17px;
-  font-weight: 700;
-  margin-bottom: 30px;
+  font-size: 16px;
+  font-weight: 600;
+  color: white;
+  margin-bottom: 28px;
 }
 
 .destination-bottom {
@@ -300,61 +303,55 @@ body {
 }
 
 .destination-bottom span {
-  font-size: 17px;
+  font-size: 16px;
   font-weight: 700;
 }
 
 .destination-bottom button {
   border: none;
-  border-radius: 13px;
-  padding: 13px 18px;
+  border-radius: 12px;
+  padding: 12px 17px;
   background-color: rgba(90, 90, 90, 0.85);
   color: white;
-  font-size: 17px;
+  font-size: 16px;
   font-weight: 700;
 }
+
+/* COMMUNITY */
 
 .community-section {
   background-color: white;
   text-align: center;
-  padding: 95px 20px 100px;
+  padding: 85px 20px 90px;
   border-bottom: 1px solid #ddd;
 }
 
 .community-icon {
-  font-size: 48px;
-  margin-bottom: 25px;
+  font-size: 42px;
+  margin-bottom: 22px;
 }
 
 .community-section h2 {
-  font-size: 44px;
-  font-weight: 700;
-  color: black;
-  margin-bottom: 20px;
+  font-size: 38px;
 }
 
 .community-section p {
-  max-width: 1000px;
+  max-width: 900px;
   margin: 0 auto;
-  font-size: 23px;
-  line-height: 1.5;
-  color: #38424d;
+  font-size: 20px;
 }
 
 .community-buttons {
-  margin-top: 40px;
+  margin-top: 35px;
   display: flex;
   justify-content: center;
-  gap: 20px;
+  gap: 18px;
 }
 
-.create-btn {
-  background-color: black;
-  color: white;
-  border: none;
-  border-radius: 14px;
-  padding: 20px 42px;
-  font-size: 18px;
+.create-btn,
+.learn-btn {
+  padding: 18px 38px;
+  font-size: 17px;
   font-weight: 700;
 }
 
@@ -362,20 +359,310 @@ body {
   background-color: white;
   color: black;
   border: 1px solid #d1d1d1;
-  border-radius: 14px;
-  padding: 20px 42px;
-  font-size: 18px;
+  border-radius: 12px;
+}
+
+/* FLIGHTS */
+
+.flights-page,
+.about-page,
+.contact-page {
+  background-color: #fafafa;
+  padding: 60px 20px 90px;
+}
+
+.flights-container h1,
+.about-container h1,
+.contact-container h1 {
+  font-size: 52px;
+  margin-bottom: 18px;
+}
+
+.flights-container > p {
+  font-size: 20px;
+  margin-bottom: 55px;
+}
+
+.flight-search-box {
+  max-width: 1200px;
+  margin: 0 auto;
+  background-color: white;
+  border: 1px solid #ddd;
+  border-radius: 18px;
+  padding: 38px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+}
+
+.trip-buttons {
+  display: flex;
+  gap: 18px;
+  margin-bottom: 32px;
+}
+
+.trip-active,
+.trip-btn {
+  border: none;
+  border-radius: 11px;
+  padding: 13px 28px;
+  font-size: 17px;
   font-weight: 700;
 }
 
+.trip-active {
+  background-color: black;
+  color: white;
+}
+
+.trip-btn {
+  background-color: #f3f3f3;
+  color: #333;
+}
+
+.flight-form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 28px;
+}
+
+.form-group label {
+  display: block;
+  font-size: 16px;
+  font-weight: 700;
+  margin-bottom: 9px;
+}
+
+.input-box {
+  height: 64px;
+  border: 1px solid #d2d2d2;
+  border-radius: 13px;
+  display: flex;
+  align-items: center;
+  padding: 0 18px;
+  gap: 14px;
+  background-color: white;
+}
+
+.input-box span {
+  font-size: 22px;
+  color: #999;
+}
+
+.input-box input,
+.input-box select {
+  width: 100%;
+  border: none;
+  outline: none;
+  font-size: 18px;
+  color: black;
+  background-color: transparent;
+}
+
+.search-flight-btn {
+  width: 100%;
+  height: 66px;
+  margin-top: 28px;
+}
+
+/* ABOUT */
+
+.about-intro {
+  font-size: 20px;
+  line-height: 1.7;
+  margin-bottom: 70px;
+}
+
+.about-block {
+  margin-bottom: 65px;
+}
+
+.about-block h2 {
+  font-size: 36px;
+  margin-bottom: 22px;
+}
+
+.about-block p {
+  font-size: 20px;
+  line-height: 1.7;
+}
+
+.why-box {
+  background-color: #f5f5f5;
+  border-radius: 20px;
+  padding: 40px;
+}
+
+.why-box h2 {
+  font-size: 38px;
+  margin-bottom: 30px;
+}
+
+.why-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 35px;
+}
+
+.why-grid p {
+  font-size: 19px;
+  margin-bottom: 20px;
+}
+
+/* CONTACT */
+
+.contact-subtitle {
+  font-size: 17px;
+  margin-bottom: 45px;
+}
+
+.contact-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 35px;
+}
+
+.contact-grid h2,
+.support-box h2,
+.message-box h2 {
+  font-size: 24px;
+  margin-bottom: 22px;
+}
+
+.contact-info {
+  display: flex;
+  gap: 15px;
+  margin-bottom: 25px;
+}
+
+.contact-info p {
+  font-size: 19px;
+  margin: 0;
+}
+
+.contact-info span {
+  display: block;
+  font-size: 13px;
+  color: #555;
+  margin-bottom: 5px;
+}
+
+.contact-info strong {
+  display: block;
+  font-size: 16px;
+  color: black;
+  font-weight: 400;
+}
+
+.support-box,
+.message-box {
+  background-color: white;
+  border-radius: 14px;
+  padding: 25px;
+}
+
+.support-box {
+  margin-top: 35px;
+}
+
+.support-box p,
+.follow-box p,
+.message-box p {
+  font-size: 15px;
+}
+
+.follow-box {
+  margin-top: 35px;
+}
+
+.social-icons {
+  display: flex;
+  gap: 12px;
+}
+
+.social-icons button {
+  width: 34px;
+  height: 34px;
+  border: none;
+  border-radius: 8px;
+  background-color: white;
+  font-weight: 700;
+}
+
+.message-box form {
+  display: flex;
+  flex-direction: column;
+}
+
+.message-box label {
+  font-size: 13px;
+  font-weight: 700;
+  margin: 14px 0 8px;
+}
+
+.message-box input,
+.message-box textarea {
+  border: 1px solid #d1d1d1;
+  border-radius: 12px;
+  padding: 14px;
+  font-size: 15px;
+  outline: none;
+}
+
+.message-box textarea {
+  min-height: 130px;
+  resize: vertical;
+}
+
+.message-box button {
+  height: 48px;
+  margin-top: 24px;
+}
+
+/* FOOTER */
+
+.footer {
+  background-color: white;
+  border-top: 1px solid #ddd;
+  text-align: center;
+  padding: 32px 20px;
+  color: #444;
+}
+
+.footer p {
+  margin: 0;
+  font-size: 16px;
+}
+
+/* RESPONSIVE */
+
 @media (max-width: 1200px) {
+  .deals-container,
   .destinations-grid {
     grid-template-columns: repeat(2, 1fr);
   }
 }
 
 @media (max-width: 768px) {
-  .destinations-grid {
+  h1,
+  .flights-container h1,
+  .about-container h1,
+  .contact-container h1 {
+    font-size: 40px;
+  }
+
+  .hero-content h1 {
+    font-size: 46px;
+  }
+
+  .hero-content p {
+    font-size: 19px;
+    padding: 0 20px;
+  }
+
+  .deals-container,
+  .destinations-grid,
+  .flight-form-grid,
+  .why-grid,
+  .contact-grid {
     grid-template-columns: 1fr;
   }
 
@@ -384,20 +671,194 @@ body {
   }
 }
 
-.footer {
-  background-color: white;
+/* SIGN IN PAGE */
 
-  border-top: 1px solid #ddd;
-
-  text-align: center;
-
-  padding: 35px 20px;
-
-  color: #444;
-
-  font-size: 18px;
+.signin-page {
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  background-color: #fafafa;
 }
 
-.footer p {
-  margin: 0;
+.signin-left {
+  background-image:
+    linear-gradient(rgba(10, 35, 55, 0.55), rgba(10, 35, 55, 0.55)),
+    url('../../../public/images/singin.jpg');
+
+  background-size: cover;
+  background-position: center;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  color: white;
+  text-align: center;
+  padding: 40px;
+}
+
+.signin-left-content {
+  max-width: 500px;
+}
+
+.signin-left-content h1 {
+  color: white;
+  font-size: 54px;
+  font-weight: 700;
+  margin-top: 20px;
+  margin-bottom: 10px;
+}
+
+.signin-left-content p {
+  color: white;
+  font-size: 20px;
+}
+
+.signin-icon {
+  font-size: 70px;
+}
+
+.signin-right {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 40px;
+}
+
+.signin-box {
+  width: 100%;
+  max-width: 430px;
+}
+
+.signin-box h2 {
+  font-size: 48px;
+  margin-bottom: 10px;
+}
+
+.signin-subtitle {
+  font-size: 16px;
+  color: #555;
+  margin-bottom: 35px;
+}
+
+.signin-form label {
+  display: block;
+  font-size: 14px;
+  font-weight: 700;
+  margin-bottom: 8px;
+  margin-top: 18px;
+}
+
+.signin-form input {
+  width: 100%;
+  height: 56px;
+  border: 1px solid #d6d6d6;
+  border-radius: 12px;
+  padding: 0 16px;
+  font-size: 16px;
+  outline: none;
+}
+
+.signin-options {
+  margin-top: 18px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 14px;
+}
+
+.signin-options a {
+  color: black;
+  text-decoration: none;
+}
+
+/* FIX SIGN IN BUTTON */
+
+.signin-btn {
+  background: transparent !important;
+  padding: 0 !important;
+  margin-left: 0 !important;
+}
+
+.signin-nav-btn {
+  display: inline-flex !important;
+  align-items: center;
+  justify-content: center;
+
+  background-color: black !important;
+  color: white !important;
+
+  padding: 10px 22px !important;
+
+  border-radius: 12px !important;
+
+  font-size: 15px !important;
+  font-weight: 700 !important;
+
+  text-decoration: none !important;
+
+  min-width: 120px !important;
+  height: 46px !important;
+
+  margin-left: 12px !important;
+
+  transition: 0.3s;
+}
+
+.signin-nav-btn:hover {
+  background-color: #222 !important;
+  color: white !important;
+}
+
+.signin-nav-btn:focus,
+.signin-nav-btn:active,
+.signin-nav-btn span {
+  color: white !important;
+}
+
+.nav-links .signin-nav-btn,
+.nav-links .signin-nav-btn.nav-link,
+.navbar .signin-nav-btn {
+  background-color: black !important;
+  color: white !important;
+  padding: 10px 22px !important;
+  border-radius: 12px !important;
+  min-width: 120px !important;
+  height: 46px !important;
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+}
+
+.nav-links .signin-nav-btn:hover,
+.nav-links .signin-nav-btn.nav-link:hover {
+  color: white !important;
+  background-color: #222 !important;
+}
+/**kepek*/
+
+.destination-card {
+  border-radius: 20px !important;
+  overflow: hidden;
+  transition: 0.3s;
+}
+
+.destination-card:hover {
+  transform: translateY(-6px);
+}
+
+.destination-image {
+  height: 260px;
+  object-fit: cover;
+}
+
+.explore-btn {
+  background-color: transparent !important;
+  border: none !important;
+  color: black !important;
+  font-weight: 600;
+}
+
+.explore-btn:hover {
+  color: #555 !important;
 }
