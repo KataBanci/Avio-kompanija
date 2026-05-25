@@ -862,3 +862,648 @@ select {
 .explore-btn:hover {
   color: #555 !important;
 }
+
+.remember-check {
+  font-size: 14px;
+}
+
+.remember-check input {
+  width: 14px !important;
+  height: 14px !important;
+  margin-top: 5px;
+  cursor: pointer;
+}
+
+.remember-check label {
+  margin-left: 5px;
+  cursor: pointer;
+}
+
+.forgot-link {
+  font-size: 14px;
+  color: #000;
+  text-decoration: none;
+}
+
+.forgot-link:hover {
+  text-decoration: underline;
+}
+
+/* REGISTER PAGE */
+
+.register-page {
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  background-color: #fafafa;
+}
+
+.register-left {
+  background-image:
+    linear-gradient(rgba(0, 0, 0, 0.55), rgba(0, 0, 0, 0.55)),
+    url('../../../public/images/acc.jpg');
+
+  background-size: cover;
+  background-position: center;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  color: white;
+  text-align: center;
+  padding: 40px;
+}
+
+.register-left-content {
+  max-width: 600px;
+}
+
+.register-icon {
+  font-size: 60px;
+  margin-bottom: 20px;
+}
+
+.register-left-content h1 {
+  color: white;
+  font-size: 42px;
+  margin-bottom: 15px;
+}
+
+.register-left-content p {
+  color: white;
+  font-size: 18px;
+}
+
+.register-right {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 45px 20px;
+}
+
+.register-box {
+  width: 100%;
+  max-width: 430px;
+}
+
+.back-link {
+  display: inline-block;
+  margin-bottom: 25px;
+  color: black;
+  text-decoration: none;
+  font-size: 15px;
+}
+
+.register-box h2 {
+  font-size: 36px;
+  font-weight: 700;
+  margin-bottom: 12px;
+}
+
+.register-subtitle {
+  font-size: 16px;
+  margin-bottom: 28px;
+}
+
+.register-form label {
+  font-size: 14px;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+
+.register-form input {
+  height: 48px;
+  border: 1px solid #d6d6d6;
+  border-radius: 12px;
+  padding: 0 14px;
+  font-size: 15px;
+}
+
+.terms-check {
+  font-size: 14px;
+  margin: 16px 0;
+}
+
+.terms-check input {
+  width: 14px !important;
+  height: 14px !important;
+  margin-top: 4px;
+}
+
+.terms-check a {
+  color: black;
+  font-weight: 700;
+}
+
+.register-btn {
+  width: 100%;
+  height: 52px;
+  border: none !important;
+  border-radius: 12px !important;
+  background-color: black !important;
+  color: white !important;
+  font-weight: 700 !important;
+}
+
+.register-bottom {
+  text-align: center;
+  margin-top: 24px;
+  font-size: 14px;
+}
+
+.register-bottom a {
+  color: black;
+  font-weight: 700;
+}
+
+@media (max-width: 992px) {
+  .register-page {
+    grid-template-columns: 1fr;
+  }
+
+ .register-left {
+  background-image:
+    linear-gradient(rgba(0, 0, 0, 0.55), rgba(0, 0, 0, 0.55)),
+    url('../../../public/images/acc.jpg');
+
+  background-size: cover;
+  background-position: center;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  color: white;
+  text-align: center;
+  padding: 40px;
+}
+}
+
+/*flight*/
+
+.flight-results-page {
+  background-color: #fafafa;
+  padding: 50px 20px 90px;
+}
+
+.flight-results-container {
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.new-search-btn {
+  border: none;
+  background: none;
+  font-size: 16px;
+  margin-bottom: 25px;
+}
+
+.flight-results-container h2 {
+  font-size: 28px;
+  margin-bottom: 8px;
+}
+
+.flight-results-container > p {
+  font-size: 17px;
+  margin-bottom: 35px;
+}
+
+.travel-class-box {
+  background-color: white;
+  border-radius: 16px;
+  padding: 25px;
+  margin-bottom: 28px;
+}
+
+.travel-class-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 18px;
+  margin-top: 14px;
+}
+
+.travel-class-grid button {
+  height: 78px;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  background-color: white;
+  font-size: 17px;
+}
+
+.travel-class-grid button strong,
+.travel-class-grid button small {
+  display: block;
+}
+
+.travel-class-grid button small {
+  margin-top: 6px;
+  font-size: 14px;
+}
+
+.travel-class-grid .class-active {
+  border: 2px solid black;
+}
+
+.results-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 18px;
+}
+
+.results-top p {
+  margin: 0;
+}
+
+.results-top button {
+  background-color: white;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  padding: 10px 18px;
+  margin-left: 8px;
+  font-weight: 700;
+}
+
+.result-flight-card {
+  background-color: white;
+  border: 1px solid #ddd;
+  border-radius: 16px;
+  padding: 24px;
+  margin-bottom: 16px;
+}
+
+.airline-name {
+  font-size: 15px;
+  color: #344050;
+  margin-bottom: 18px;
+}
+
+.flight-times {
+  display: grid;
+  grid-template-columns: 90px 1fr 90px 120px;
+  gap: 25px;
+  align-items: center;
+}
+
+.flight-times h3 {
+  font-size: 26px;
+  margin-bottom: 3px;
+}
+
+.flight-times span {
+  font-size: 14px;
+  color: #344050;
+}
+
+.flight-line {
+  text-align: center;
+}
+
+.flight-line div {
+  height: 1px;
+  background-color: #aaa;
+  margin: 10px 0;
+  position: relative;
+}
+
+.flight-line div::after {
+  content: '→';
+  position: absolute;
+  right: -4px;
+  top: -11px;
+  color: #888;
+}
+
+.result-price {
+  text-align: center;
+}
+
+.result-price h3 {
+  font-size: 28px;
+  margin-bottom: 2px;
+}
+
+.result-price button {
+  margin-top: 10px;
+  border: none;
+  border-radius: 10px;
+  padding: 12px 25px;
+  background-color: #f3f3f3;
+  font-weight: 700;
+}
+
+@media (max-width: 768px) {
+  .travel-class-grid,
+  .flight-times {
+    grid-template-columns: 1fr;
+  }
+
+  .results-top {
+    flex-direction: column;
+    gap: 15px;
+    align-items: flex-start;
+  }
+}
+
+/**/
+.seat-page {
+  background-color: #fafafa;
+  padding: 50px 20px 90px;
+}
+
+.seat-container {
+  max-width: 760px;
+  margin: 0 auto;
+}
+
+.seat-container h1 {
+  font-size: 42px;
+  margin-bottom: 8px;
+}
+
+.seat-box {
+  background-color: white;
+  border-radius: 18px;
+  padding: 30px;
+  margin-top: 25px;
+}
+
+.seat-legend {
+  display: flex;
+  justify-content: center;
+  gap: 28px;
+  margin-bottom: 25px;
+}
+
+.seat-legend span {
+  font-size: 14px;
+}
+
+.legend {
+  width: 18px;
+  height: 18px;
+  display: inline-block;
+  border-radius: 4px;
+  margin-right: 7px;
+  vertical-align: middle;
+}
+
+.legend.available {
+  background-color: white;
+  border: 1px solid #bbb;
+}
+
+.legend.selected {
+  background-color: black;
+}
+
+.legend.occupied {
+  background-color: #d1d1d1;
+}
+
+.front-text {
+  text-align: center;
+  font-size: 13px;
+  margin-bottom: 18px;
+}
+
+.seat-columns {
+  width: 390px;
+  margin: 0 auto 10px;
+  display: grid;
+  grid-template-columns: repeat(6, 55px);
+  gap: 8px;
+  text-align: center;
+  font-size: 13px;
+}
+
+.seat-grid {
+  width: 390px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(6, 55px);
+  gap: 8px;
+}
+
+.seat {
+  width: 55px;
+  height: 50px;
+  border-radius: 5px;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.available-seat {
+  background-color: white;
+  border: 1px solid #cfcfcf;
+  color: black;
+}
+
+.selected-seat {
+  background-color: black;
+  border: 1px solid black;
+  color: white;
+}
+
+.occupied-seat {
+  background-color: #d1d1d1;
+  border: 1px solid #d1d1d1;
+  color: #777;
+  cursor: not-allowed;
+}
+
+.selected-seat-info {
+  margin-top: 25px;
+  text-align: center;
+  font-weight: 700;
+}
+
+/**/
+.seat-bottom {
+  margin-top: 30px;
+  background-color: white;
+  border-radius: 14px;
+  padding: 20px;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.seat-bottom p {
+  margin: 0 0 5px;
+  font-size: 15px;
+}
+
+.seat-bottom button {
+  border: none;
+  border-radius: 12px;
+  background-color: black;
+  color: white;
+  padding: 15px 28px;
+  font-weight: 700;
+}
+/**/
+.payment-page {
+  background-color: #fafafa;
+  padding: 50px 20px 90px;
+}
+
+.payment-container {
+  max-width: 980px;
+  margin: 0 auto;
+}
+
+.payment-container h1 {
+  font-size: 42px;
+  margin-bottom: 8px;
+}
+
+.payment-content {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 30px;
+  margin-top: 30px;
+}
+
+.payment-methods {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px;
+  margin-bottom: 25px;
+}
+
+.payment-methods button {
+  height: 80px;
+  background-color: white;
+  border: 1px solid #ddd;
+  border-radius: 14px;
+  font-weight: 700;
+}
+
+.payment-methods .payment-active {
+  border: 2px solid black;
+}
+
+.payment-box,
+.booking-summary {
+  background-color: white;
+  border-radius: 16px;
+  padding: 30px;
+}
+
+.payment-box label {
+  display: block;
+  font-weight: 700;
+  margin: 14px 0 8px;
+}
+
+.payment-box input {
+  width: 100%;
+  height: 48px;
+  border: 1px solid #ccc;
+  border-radius: 12px;
+  padding: 0 14px;
+}
+
+.payment-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px;
+}
+
+.pay-btn {
+  width: 100%;
+  height: 54px;
+  margin-top: 25px;
+  border: none;
+  border-radius: 12px;
+  background-color: black;
+  color: white;
+  font-weight: 700;
+}
+
+.booking-summary h2 {
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+.booking-summary div {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 14px;
+}
+
+.total-row strong {
+  font-size: 24px;
+}
+
+@media (max-width: 768px) {
+  .payment-content,
+  .payment-methods,
+  .payment-row {
+    grid-template-columns: 1fr;
+  }
+}
+
+/**/
+.confirmation-page {
+  min-height: 100vh;
+  background-color: #fafafa;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 40px 20px;
+}
+
+.confirmation-box {
+  width: 100%;
+  max-width: 520px;
+  text-align: center;
+}
+
+.success-icon {
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  background-color: #dff5e3;
+  color: #16a34a;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 42px;
+  margin: 0 auto 25px;
+}
+
+.confirmation-box h1 {
+  font-size: 44px;
+  margin-bottom: 18px;
+}
+
+.confirmation-box p {
+  color: #555;
+  line-height: 1.7;
+  margin-bottom: 35px;
+}
+
+.confirmation-details {
+  background-color: white;
+  border-radius: 18px;
+  padding: 30px;
+  text-align: left;
+}
+
+.confirmation-details h2 {
+  margin-bottom: 25px;
+}
+
+.confirmation-details div {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 16px;
+}
+
+.confirmation-total strong {
+  font-size: 28px;
+}

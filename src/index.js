@@ -6,7 +6,12 @@ import {
   Route,
   RouterProvider,
 } from 'react-router-dom'
-
+import { Provider } from 'react-redux'
+import store from './store'
+import { ToastContainer } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
+import './assets/styles/bootstrap-custom.css'
+import './assets/styles/index.css'
 import App from './App'
 import HomeScreen from './screens/HomeScreen'
 import FlightsScreen from './screens/FlightsScreen'
@@ -14,9 +19,11 @@ import AboutScreen from './screens/AboutScreen'
 import ContactScreen from './screens/ContactScreen'
 import SignInScreen from './screens/SignInScreen'
 import DestinationsScreen from './screens/DestinationsScreen'
+import RegisterScreen from './screens/RegisterScreen'
 
-import './assets/styles/bootstrap-custom.css'
-import './assets/styles/index.css'
+
+
+
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -27,6 +34,7 @@ const router = createBrowserRouter(
   <Route path='contact' element={<ContactScreen />} />
   <Route path='signin' element={<SignInScreen />} />
   <Route path='destinations' element={<DestinationsScreen />} />
+  <Route path='register' element={<RegisterScreen />} />
 </Route>
   )
 )
@@ -35,6 +43,9 @@ const root = ReactDOM.createRoot(document.getElementById('root'))
 
 root.render(
   <React.StrictMode>
-    <RouterProvider router={router} />
+    <Provider store={store}>
+      <RouterProvider router={router} />
+      <ToastContainer />
+    </Provider>
   </React.StrictMode>
 )

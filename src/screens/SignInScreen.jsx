@@ -72,18 +72,20 @@ const SignInScreen = () => {
 
             </Form.Group>
 
-            <div className='signin-options'>
+          <div className='d-flex justify-content-between align-items-center mb-4'>
 
-              <Form.Check
-                type='checkbox'
-                label='Remember me'
-              />
+  <Form.Check
+    type='checkbox'
+    id='rememberMe'
+    label='Remember me'
+    className='remember-check'
+  />
 
-              <Link to='/'>
-                Forgot password?
-              </Link>
+  <a href='#' className='forgot-link'>
+    Forgot password?
+  </a>
 
-            </div>
+</div>
 
             <Button
               type='submit'
@@ -99,9 +101,9 @@ const SignInScreen = () => {
 
               Don&apos;t have an account?{' '}
 
-              <Link to='/register'>
-                Create an account
-              </Link>
+             <Link to='/register'>
+  Create an account
+</Link>
 
             </Col>
           </Row>
