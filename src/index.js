@@ -20,7 +20,8 @@ import ContactScreen from './screens/ContactScreen'
 import SignInScreen from './screens/SignInScreen'
 import DestinationsScreen from './screens/DestinationsScreen'
 import RegisterScreen from './screens/RegisterScreen'
-
+import DestinationDetailsScreen from './screens/DestinationDetailsScreen'
+import ProfileScreen from './screens/ProfileScreen'
 
 
 
@@ -35,6 +36,8 @@ const router = createBrowserRouter(
   <Route path='signin' element={<SignInScreen />} />
   <Route path='destinations' element={<DestinationsScreen />} />
   <Route path='register' element={<RegisterScreen />} />
+  <Route path='destinations/:city' element={<DestinationDetailsScreen />} />
+  <Route path='profile' element={<ProfileScreen />} />
 </Route>
   )
 )

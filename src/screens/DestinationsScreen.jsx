@@ -142,6 +142,8 @@ const destinations = [
     country: 'Greece',
     image: '/images/destinations/athens.avif',
     price: '$498',
+      rating: 4.8,
+  reviewText: 'Excellent',
     description:
       'Cradle of Western civilization with ancient ruins and Mediterranean charm.',
   },
@@ -332,10 +334,14 @@ const DestinationsScreen = () => {
                     from {destination.price}
                   </strong>
 
-                  <Button className='explore-btn'>
-                    Explore →
-                  </Button>
-
+                 <Button
+  className='explore-btn'
+  onClick={() =>
+    window.location.href = `/destinations/${destination.city.toLowerCase().replaceAll(' ', '')}`
+  }
+>
+  Explore →
+</Button>
                 </div>
               </Card.Body>
 

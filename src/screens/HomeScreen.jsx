@@ -134,9 +134,9 @@ const HomeScreen = () => {
 
                 <div className='destination-bottom'>
                   <span>from $542</span>
-                  <button onClick={() => bookNowHandler('London')}>
-                    Explore →
-                  </button>
+                 <button onClick={() => navigate('/destinations/london')}>
+  Explore →
+</button>
                 </div>
               </div>
             </div>
@@ -151,9 +151,9 @@ const HomeScreen = () => {
 
                 <div className='destination-bottom'>
                   <span>from $628</span>
-                  <button onClick={() => bookNowHandler('Milan')}>
-                    Explore →
-                  </button>
+                 <button onClick={() => navigate('/destinations/milan')}>
+  Explore →
+</button>
                 </div>
               </div>
             </div>
@@ -168,9 +168,9 @@ const HomeScreen = () => {
 
                 <div className='destination-bottom'>
                   <span>from $389</span>
-                  <button onClick={() => bookNowHandler('New York')}>
-                    Explore →
-                  </button>
+                <button onClick={() => navigate('/destinations/newyork')}>
+  Explore →
+</button>
                 </div>
               </div>
             </div>
@@ -185,9 +185,9 @@ const HomeScreen = () => {
 
                 <div className='destination-bottom'>
                   <span>from $456</span>
-                  <button onClick={() => bookNowHandler('Budapest')}>
-                    Explore →
-                  </button>
+                 <button onClick={() => navigate('/destinations/budapest')}>
+  Explore →
+</button>
                 </div>
               </div>
             </div>
