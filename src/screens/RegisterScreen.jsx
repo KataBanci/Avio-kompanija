@@ -1,12 +1,9 @@
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import { Link, useLocation, useNavigate } from 'react-router-dom'
 import { Form, Button } from 'react-bootstrap'
 import { FaUserPlus } from 'react-icons/fa'
-import { useDispatch, useSelector } from 'react-redux'
-import Loader from '../components/Loader'
-import { useRegisterMutation } from '../slices/usersApiSlice'
+import { useDispatch } from 'react-redux'
 import { setCredentials } from '../slices/authSlice'
-import { toast } from 'react-toastify'
 
 const RegisterScreen = () => {
   const [name, setName] = useState('')
@@ -18,35 +15,26 @@ const RegisterScreen = () => {
   const dispatch = useDispatch()
   const navigate = useNavigate()
 
-  const [register, { isLoading }] = useRegisterMutation()
-
-  const { userInfo } = useSelector((state) => state.auth)
-
   const { search } = useLocation()
   const sp = new URLSearchParams(search)
   const redirect = sp.get('redirect') || '/'
 
-  useEffect(() => {
-    if (userInfo) {
-      navigate(redirect)
-    }
-  }, [userInfo, redirect, navigate])
-
-  const submitHandler = async (e) => {
+  const submitHandler = (e) => {
     e.preventDefault()
 
     if (password !== confirmPassword) {
-      toast.error('Passwords do not match')
+      alert('Passwords do not match')
       return
     }
 
-    try {
-      const res = await register({ name, email, password }).unwrap()
-      dispatch(setCredentials({ ...res }))
-      navigate(redirect)
-    } catch (err) {
-      toast.error(err?.data?.message || err.error)
+    const fakeUser = {
+      name,
+      email,
+      phone,
     }
+
+    dispatch(setCredentials(fakeUser))
+    navigate(redirect)
   }
 
   return (
@@ -137,25 +125,12 @@ const RegisterScreen = () => {
               type='checkbox'
               id='terms'
               className='terms-check'
-              label={
-                <>
-                  I agree to the{' '}
-                  <Link to='/terms'>
-                    Terms and Conditions
-                  </Link>
-                </>
-              }
+              label='I agree to the Terms and Conditions'
             />
 
-            <Button
-              type='submit'
-              className='register-btn'
-              disabled={isLoading}
-            >
+            <Button type='submit' className='register-btn'>
               Create Account
             </Button>
-
-            {isLoading && <Loader />}
           </Form>
 
           <div className='register-bottom'>

@@ -1,6 +1,10 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
+import { useLocation, useNavigate } from 'react-router-dom'
+import { useSelector } from 'react-redux'
+
 import FlightCard from '../components/FlightCard'
 import SeatSelection from '../components/SeatSelection'
+import FlightSearchForm from '../components/FlightSearchForm'
 
 const flights = [
   {
@@ -45,21 +49,6 @@ const flights = [
   },
 ]
 
-const cities = [
-  'New York',
-  'London',
-  'Paris',
-  'Rome',
-  'Barcelona',
-  'Dubai',
-  'Tokyo',
-  'Amsterdam',
-  'Singapore',
-  'Istanbul',
-  'Belgrade',
-  'Budapest',
-]
-
 const airportCodes = {
   'New York': 'JFK',
   London: 'LHR',
@@ -73,11 +62,21 @@ const airportCodes = {
   Istanbul: 'IST',
   Belgrade: 'BEG',
   Budapest: 'BUD',
+  Milan: 'MXP',
 }
 
 const FlightsScreen = () => {
+  const location = useLocation()
+  const navigate = useNavigate()
+
+  const { userInfo } = useSelector((state) => state.auth)
+
+  const params = new URLSearchParams(location.search)
+  const destinationFromUrl = params.get('to') || 'London'
+
   const [from, setFrom] = useState('New York')
-  const [to, setTo] = useState('London')
+  const [to] = useState(destinationFromUrl)
+
   const [departure, setDeparture] = useState('2026-04-20')
   const [returnDate, setReturnDate] = useState('2026-04-27')
   const [passengers, setPassengers] = useState('1 Passenger')
@@ -87,6 +86,12 @@ const FlightsScreen = () => {
 
   const [travelClass, setTravelClass] = useState('economy')
   const [selectedFlight, setSelectedFlight] = useState(null)
+
+  useEffect(() => {
+    if (!userInfo) {
+      navigate(`/signin?redirect=${encodeURIComponent(location.pathname + location.search)}`)
+    }
+  }, [userInfo, navigate, location.pathname, location.search])
 
   const searchHandler = () => {
     if (from === to) {
@@ -197,98 +202,18 @@ const FlightsScreen = () => {
   }
 
   return (
-    <section className='flights-page'>
-      <div className='flights-container'>
-        <h1>Search flights</h1>
-        <p>Enter your travel details to find the best flights</p>
-
-        <div className='flight-search-box'>
-          <div className='trip-buttons'>
-            <button className='trip-active'>Round trip</button>
-            <button className='trip-btn'>One way</button>
-          </div>
-
-          <div className='flight-form-grid'>
-            <div className='form-group'>
-              <label>From</label>
-              <div className='input-box'>
-                <span>⌖</span>
-
-                <select value={from} onChange={(e) => setFrom(e.target.value)}>
-                  {cities.map((city) => (
-                    <option key={city} value={city}>
-                      {city}
-                    </option>
-                  ))}
-                </select>
-              </div>
-            </div>
-
-            <div className='form-group'>
-              <label>To</label>
-              <div className='input-box'>
-                <span>⌖</span>
-
-                <select value={to} onChange={(e) => setTo(e.target.value)}>
-                  {cities.map((city) => (
-                    <option key={city} value={city}>
-                      {city}
-                    </option>
-                  ))}
-                </select>
-              </div>
-            </div>
-
-            <div className='form-group'>
-              <label>Departure</label>
-              <div className='input-box'>
-                <span>▣</span>
-
-                <input
-                  type='date'
-                  value={departure}
-                  onChange={(e) => setDeparture(e.target.value)}
-                />
-              </div>
-            </div>
-
-            <div className='form-group'>
-              <label>Return</label>
-              <div className='input-box'>
-                <span>▣</span>
-
-                <input
-                  type='date'
-                  value={returnDate}
-                  onChange={(e) => setReturnDate(e.target.value)}
-                />
-              </div>
-            </div>
-
-            <div className='form-group'>
-              <label>Passengers</label>
-              <div className='input-box'>
-                <span>♙</span>
-
-                <select
-                  value={passengers}
-                  onChange={(e) => setPassengers(e.target.value)}
-                >
-                  <option>1 Passenger</option>
-                  <option>2 Passengers</option>
-                  <option>3 Passengers</option>
-                  <option>4 Passengers</option>
-                </select>
-              </div>
-            </div>
-          </div>
-
-          <button className='search-flight-btn' onClick={searchHandler}>
-            ⌕ Search flights
-          </button>
-        </div>
-      </div>
-    </section>
+    <FlightSearchForm
+      from={from}
+      setFrom={setFrom}
+      to={to}
+      departure={departure}
+      setDeparture={setDeparture}
+      returnDate={returnDate}
+      setReturnDate={setReturnDate}
+      passengers={passengers}
+      setPassengers={setPassengers}
+      searchHandler={searchHandler}
+    />
   )
 }
 

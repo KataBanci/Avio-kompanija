@@ -2,19 +2,31 @@ import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { Form, Button, Row, Col } from 'react-bootstrap'
 import { FaSignInAlt } from 'react-icons/fa'
+import { useDispatch } from 'react-redux'
+import { useNavigate } from 'react-router-dom'
+import { setCredentials } from '../slices/authSlice'
 
 const SignInScreen = () => {
 
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
+  const dispatch = useDispatch()
+const navigate = useNavigate()
 
   const submitHandler = (e) => {
-    e.preventDefault()
+  e.preventDefault()
 
-    console.log(email)
-    console.log(password)
+  const fakeUser = {
+    name: 'Kata',
+    email,
   }
 
+  localStorage.setItem('userInfo', JSON.stringify(fakeUser))
+
+  dispatch(setCredentials(fakeUser))
+
+  navigate('/')
+}
   return (
     <div className='signin-page'>
 

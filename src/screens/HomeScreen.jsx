@@ -1,11 +1,24 @@
+import { useNavigate } from 'react-router-dom'
+import { useSelector } from 'react-redux'
+
 const HomeScreen = () => {
+  const navigate = useNavigate()
+  const { userInfo } = useSelector((state) => state.auth)
+
+  const bookNowHandler = (city) => {
+    if (!userInfo) {
+      navigate(`/signin?redirect=${encodeURIComponent(`/flights?to=${city}`)}`)
+    } else {
+      navigate(`/flights?to=${city}`)
+    }
+  }
+
   return (
     <>
       <section className='hero-section'>
         <div className='hero-overlay'>
           <div className='hero-content'>
             <h1>Fly Smarter, Travel Better</h1>
-
             <p>
               Discover top destinations, book flights in seconds, and enjoy a
               seamless travel experience.
@@ -24,13 +37,9 @@ const HomeScreen = () => {
             <p className='airline'>✈ Air France</p>
 
             <div className='route'>
-              <h3>
-                New York <span>JFK</span>
-              </h3>
+              <h3>New York <span>JFK</span></h3>
               <hr />
-              <h3>
-                Paris <span>CDG</span>
-              </h3>
+              <h3>Paris <span>CDG</span></h3>
             </div>
 
             <p className='date'>Apr 25 - May 2</p>
@@ -39,7 +48,9 @@ const HomeScreen = () => {
               $299 <span>$549</span>
             </div>
 
-            <button className='book-btn'>Book now</button>
+            <button className='book-btn' onClick={() => bookNowHandler('Paris')}>
+              Book now
+            </button>
           </div>
 
           <div className='deal-card'>
@@ -47,13 +58,9 @@ const HomeScreen = () => {
             <p className='airline'>✈ Japan Airlines</p>
 
             <div className='route'>
-              <h3>
-                Los Angeles <span>LAX</span>
-              </h3>
+              <h3>Los Angeles <span>LAX</span></h3>
               <hr />
-              <h3>
-                Tokyo <span>NRT</span>
-              </h3>
+              <h3>Tokyo <span>NRT</span></h3>
             </div>
 
             <p className='date'>May 10 - May 20</p>
@@ -62,7 +69,9 @@ const HomeScreen = () => {
               $425 <span>$780</span>
             </div>
 
-            <button className='book-btn'>Book now</button>
+            <button className='book-btn' onClick={() => bookNowHandler('Tokyo')}>
+              Book now
+            </button>
           </div>
 
           <div className='deal-card'>
@@ -70,13 +79,9 @@ const HomeScreen = () => {
             <p className='airline'>✈ Emirates</p>
 
             <div className='route'>
-              <h3>
-                London <span>LHR</span>
-              </h3>
+              <h3>London <span>LHR</span></h3>
               <hr />
-              <h3>
-                Dubai <span>DXB</span>
-              </h3>
+              <h3>Dubai <span>DXB</span></h3>
             </div>
 
             <p className='date'>Jun 5 - Jun 15</p>
@@ -85,7 +90,9 @@ const HomeScreen = () => {
               $385 <span>$650</span>
             </div>
 
-            <button className='book-btn'>Book now</button>
+            <button className='book-btn' onClick={() => bookNowHandler('Dubai')}>
+              Book now
+            </button>
           </div>
 
           <div className='deal-card'>
@@ -93,13 +100,9 @@ const HomeScreen = () => {
             <p className='airline'>✈ Iberia</p>
 
             <div className='route'>
-              <h3>
-                Miami <span>MIA</span>
-              </h3>
+              <h3>Miami <span>MIA</span></h3>
               <hr />
-              <h3>
-                Barcelona <span>BCN</span>
-              </h3>
+              <h3>Barcelona <span>BCN</span></h3>
             </div>
 
             <p className='date'>Apr 30 - May 8</p>
@@ -108,7 +111,9 @@ const HomeScreen = () => {
               $315 <span>$590</span>
             </div>
 
-            <button className='book-btn'>Book now</button>
+            <button className='book-btn' onClick={() => bookNowHandler('Barcelona')}>
+              Book now
+            </button>
           </div>
         </div>
       </section>
@@ -129,7 +134,9 @@ const HomeScreen = () => {
 
                 <div className='destination-bottom'>
                   <span>from $542</span>
-                  <button>Explore →</button>
+                  <button onClick={() => bookNowHandler('London')}>
+                    Explore →
+                  </button>
                 </div>
               </div>
             </div>
@@ -144,7 +151,9 @@ const HomeScreen = () => {
 
                 <div className='destination-bottom'>
                   <span>from $628</span>
-                  <button>Explore →</button>
+                  <button onClick={() => bookNowHandler('Milan')}>
+                    Explore →
+                  </button>
                 </div>
               </div>
             </div>
@@ -159,7 +168,9 @@ const HomeScreen = () => {
 
                 <div className='destination-bottom'>
                   <span>from $389</span>
-                  <button>Explore →</button>
+                  <button onClick={() => bookNowHandler('New York')}>
+                    Explore →
+                  </button>
                 </div>
               </div>
             </div>
@@ -174,7 +185,9 @@ const HomeScreen = () => {
 
                 <div className='destination-bottom'>
                   <span>from $456</span>
-                  <button>Explore →</button>
+                  <button onClick={() => bookNowHandler('Budapest')}>
+                    Explore →
+                  </button>
                 </div>
               </div>
             </div>
@@ -193,13 +206,26 @@ const HomeScreen = () => {
           recommendations.
         </p>
 
-        <div className='community-buttons'>
-          <button className='create-btn'>Create an account</button>
-          <button className='learn-btn'>Learn more</button>
-        </div>
+       <div className='community-buttons'>
+
+  <button
+    className='create-btn'
+    onClick={() => navigate('/register')}
+  >
+    Create an account
+  </button>
+
+  <button
+    className='learn-btn'
+    onClick={() => navigate('/about')}
+  >
+    Learn more
+  </button>
+
+</div>
       </section>
     </>
-  );
-};
+  )
+}
 
-export default HomeScreen;
+export default HomeScreen
