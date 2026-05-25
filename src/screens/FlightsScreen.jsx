@@ -63,19 +63,22 @@ const airportCodes = {
   Belgrade: 'BEG',
   Budapest: 'BUD',
   Milan: 'MXP',
+  'Los Angeles': 'LAX',
+  Miami: 'MIA',
 }
 
 const FlightsScreen = () => {
   const location = useLocation()
   const navigate = useNavigate()
-
   const { userInfo } = useSelector((state) => state.auth)
 
-  const params = new URLSearchParams(location.search)
-  const destinationFromUrl = params.get('to') || 'London'
+ const params = new URLSearchParams(location.search)
 
-  const [from, setFrom] = useState('New York')
-  const [to] = useState(destinationFromUrl)
+const fromFromUrl = params.get('from') || 'New York'
+const destinationFromUrl = params.get('to') || 'London'
+
+const [from, setFrom] = useState(fromFromUrl)
+const [to, setTo] = useState(destinationFromUrl)
 
   const [departure, setDeparture] = useState('2026-04-20')
   const [returnDate, setReturnDate] = useState('2026-04-27')
@@ -202,18 +205,19 @@ const FlightsScreen = () => {
   }
 
   return (
-    <FlightSearchForm
-      from={from}
-      setFrom={setFrom}
-      to={to}
-      departure={departure}
-      setDeparture={setDeparture}
-      returnDate={returnDate}
-      setReturnDate={setReturnDate}
-      passengers={passengers}
-      setPassengers={setPassengers}
-      searchHandler={searchHandler}
-    />
+   <FlightSearchForm
+  from={from}
+  setFrom={setFrom}
+  to={to}
+  setTo={setTo}
+  departure={departure}
+  setDeparture={setDeparture}
+  returnDate={returnDate}
+  setReturnDate={setReturnDate}
+  passengers={passengers}
+  setPassengers={setPassengers}
+  searchHandler={searchHandler}
+/>
   )
 }
 

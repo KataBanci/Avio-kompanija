@@ -20,6 +20,36 @@ const Payment = ({
 
   const total = price * selectedSeats.length
 
+  const saveBookingHandler = () => {
+    const newBooking = {
+      id: `BK${Date.now()}`,
+      route: `${from} (${airportCodes[from]}) ✈ ${to} (${airportCodes[to]})`,
+      date: departure,
+      passengers:
+        selectedSeats.length === 1
+          ? '1 passenger'
+          : `${selectedSeats.length} passengers`,
+      price: `$${total}`,
+      airline: selectedFlight.airline,
+      departure: selectedFlight.fromTime,
+      arrival: selectedFlight.toTime,
+      duration: selectedFlight.duration,
+      classType: travelClass === 'economy' ? 'Economy' : 'Business',
+      seats: selectedSeats.join(', '),
+      status: 'confirmed',
+    }
+
+    const savedBookings =
+      JSON.parse(localStorage.getItem('bookings')) || []
+
+    localStorage.setItem(
+      'bookings',
+      JSON.stringify([...savedBookings, newBooking])
+    )
+
+    setIsPaid(true)
+  }
+
   if (isPaid) {
     return (
       <section className='confirmation-page'>
@@ -117,7 +147,7 @@ const Payment = ({
 
                 <button
                   className='pay-btn'
-                  onClick={() => setIsPaid(true)}
+                  onClick={saveBookingHandler}
                 >
                   Pay ${total} with PayPal
                 </button>
@@ -160,7 +190,7 @@ const Payment = ({
 
                 <button
                   className='pay-btn'
-                  onClick={() => setIsPaid(true)}
+                  onClick={saveBookingHandler}
                 >
                   Pay ${total}
                 </button>
@@ -173,7 +203,6 @@ const Payment = ({
 
             <div>
               <span>Route</span>
-
               <strong>
                 {airportCodes[from]} → {airportCodes[to]}
               </strong>
@@ -186,7 +215,6 @@ const Payment = ({
 
             <div>
               <span>Class</span>
-
               <strong>
                 {travelClass === 'economy'
                   ? 'Economy'
@@ -196,25 +224,18 @@ const Payment = ({
 
             <div>
               <span>Seats</span>
-
-              <strong>
-                {selectedSeats.join(', ')}
-              </strong>
+              <strong>{selectedSeats.join(', ')}</strong>
             </div>
 
             <div>
               <span>Passengers</span>
-
-              <strong>
-                {selectedSeats.length}
-              </strong>
+              <strong>{selectedSeats.length}</strong>
             </div>
 
             <hr />
 
             <div>
               <span>Price per ticket</span>
-
               <strong>${price}</strong>
             </div>
 

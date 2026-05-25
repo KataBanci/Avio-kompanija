@@ -4,10 +4,12 @@ import { Form, Button, Row, Col } from 'react-bootstrap'
 import { FaSignInAlt } from 'react-icons/fa'
 import { useDispatch } from 'react-redux'
 import { setCredentials } from '../slices/authSlice'
+import ForgotPasswordModal from '../components/ForgotPasswordModal'
 
 const SignInScreen = () => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
+  const [showForgot, setShowForgot] = useState(false)
 
   const dispatch = useDispatch()
   const navigate = useNavigate()
@@ -25,7 +27,6 @@ const SignInScreen = () => {
     }
 
     dispatch(setCredentials(fakeUser))
-
     navigate(redirect)
   }
 
@@ -82,9 +83,13 @@ const SignInScreen = () => {
                 className='remember-check'
               />
 
-              <a href='#' className='forgot-link'>
+              <button
+                type='button'
+                className='forgot-link-btn'
+                onClick={() => setShowForgot(true)}
+              >
                 Forgot password?
-              </a>
+              </button>
             </div>
 
             <Button
@@ -106,6 +111,12 @@ const SignInScreen = () => {
           </Row>
         </div>
       </div>
+
+      {showForgot && (
+        <ForgotPasswordModal
+          onClose={() => setShowForgot(false)}
+        />
+      )}
     </div>
   )
 }

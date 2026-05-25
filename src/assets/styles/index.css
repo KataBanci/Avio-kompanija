@@ -1789,3 +1789,187 @@ select {
   margin-left: 8px;
   font-size: 15px;
 }
+
+.continue-seat-btn {
+  display: block;
+  margin: 30px auto 0;
+  border: none;
+  border-radius: 14px;
+  background-color: #000;
+  color: #fff;
+  padding: 18px 42px;
+  font-size: 18px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.continue-seat-btn:hover {
+  background-color: #222;
+}
+
+
+.delete-btn {
+  color: red !important;
+  border-color: red !important;
+}
+
+.flight-details-card {
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 18px;
+  padding: 25px;
+  margin-top: 25px;
+}
+
+.flight-details-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.flight-details-header button {
+  border: none;
+  background: black;
+  color: white;
+  border-radius: 50%;
+  width: 32px;
+  height: 32px;
+}
+
+.booking-details-page {
+  padding: 60px 20px;
+}
+
+.booking-details-container {
+  max-width: 900px;
+  margin: auto;
+}
+
+.booking-details-card {
+  background: white;
+  padding: 40px;
+  border-radius: 20px;
+  border: 1px solid #ddd;
+}
+
+.booking-details-card h1 {
+  margin-bottom: 30px;
+}
+
+.booking-details-card p {
+  margin-bottom: 14px;
+  font-size: 18px;
+}
+
+.back-btn {
+  margin-bottom: 20px;
+  border: none;
+  background: black;
+  color: white;
+  padding: 12px 22px;
+  border-radius: 12px;
+}
+
+
+.edit-profile-box {
+  margin-top: 25px;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 18px;
+  padding: 25px;
+}
+
+.edit-profile-box h2 {
+  margin-bottom: 20px;
+}
+
+.edit-profile-buttons {
+  display: flex;
+  gap: 12px;
+}
+
+.save-profile-btn {
+  background: black !important;
+  border: none !important;
+}
+
+.cancel-profile-btn {
+  background: white !important;
+  color: black !important;
+  border: 1px solid #ccc !important;
+}
+
+.forgot-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
+}
+
+.forgot-box {
+  width: 400px;
+  background: white;
+  padding: 30px;
+  border-radius: 20px;
+}
+
+.forgot-buttons {
+  display: flex;
+  gap: 10px;
+}
+
+.success-text {
+  margin: 20px 0;
+  font-size: 16px;
+}
+
+.forgot-link-btn {
+  background: none;
+  border: none;
+  color: black;
+  cursor: pointer;
+  font-size: 15px;
+}
+.remember-check.form-check {
+  display: flex !important;
+  align-items: center !important;
+  gap: 10px !important;
+  padding-left: 0 !important;
+  margin: 0 !important;
+  white-space: nowrap !important;
+}
+
+.remember-check .form-check-input {
+  width: 18px !important;
+  height: 18px !important;
+  margin: 0 !important;
+  cursor: pointer;
+}
+
+.remember-check .form-check-label {
+  margin: 0 !important;
+  font-size: 15px;
+  font-weight: 600;
+  color: #111;
+  cursor: pointer;
+}
+
+.forgot-link-btn {
+  background: none;
+  border: none;
+  color: #000;
+  font-size: 15px;
+  font-weight: 500;
+  cursor: pointer;
+  padding: 0;
+}
+
+.forgot-link-btn:hover {
+  text-decoration: underline;
+}

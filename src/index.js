@@ -22,6 +22,7 @@ import DestinationsScreen from './screens/DestinationsScreen'
 import RegisterScreen from './screens/RegisterScreen'
 import DestinationDetailsScreen from './screens/DestinationDetailsScreen'
 import ProfileScreen from './screens/ProfileScreen'
+import BookingDetailsScreen from './screens/BookingDetailsScreen'
 
 
 
@@ -38,6 +39,7 @@ const router = createBrowserRouter(
   <Route path='register' element={<RegisterScreen />} />
   <Route path='destinations/:city' element={<DestinationDetailsScreen />} />
   <Route path='profile' element={<ProfileScreen />} />
+  <Route path='booking/:id' element={<BookingDetailsScreen />} />
 </Route>
   )
 )

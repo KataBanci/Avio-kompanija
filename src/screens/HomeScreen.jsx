@@ -5,11 +5,15 @@ const HomeScreen = () => {
   const navigate = useNavigate()
   const { userInfo } = useSelector((state) => state.auth)
 
-  const bookNowHandler = (city) => {
+  const bookNowHandler = (fromCity, toCity) => {
     if (!userInfo) {
-      navigate(`/signin?redirect=${encodeURIComponent(`/flights?to=${city}`)}`)
+      navigate(
+        `/signin?redirect=${encodeURIComponent(
+          `/flights?from=${fromCity}&to=${toCity}`
+        )}`
+      )
     } else {
-      navigate(`/flights?to=${city}`)
+      navigate(`/flights?from=${fromCity}&to=${toCity}`)
     }
   }
 
@@ -48,9 +52,9 @@ const HomeScreen = () => {
               $299 <span>$549</span>
             </div>
 
-            <button className='book-btn' onClick={() => bookNowHandler('Paris')}>
-              Book now
-            </button>
+           <button className='book-btn' onClick={() => bookNowHandler('New York', 'Paris')}>
+  Book now
+</button>
           </div>
 
           <div className='deal-card'>
@@ -69,9 +73,9 @@ const HomeScreen = () => {
               $425 <span>$780</span>
             </div>
 
-            <button className='book-btn' onClick={() => bookNowHandler('Tokyo')}>
-              Book now
-            </button>
+            <button className='book-btn' onClick={() => bookNowHandler('Los Angeles', 'Tokyo')}>
+  Book now
+</button>
           </div>
 
           <div className='deal-card'>
@@ -90,9 +94,9 @@ const HomeScreen = () => {
               $385 <span>$650</span>
             </div>
 
-            <button className='book-btn' onClick={() => bookNowHandler('Dubai')}>
-              Book now
-            </button>
+            <button className='book-btn' onClick={() => bookNowHandler('London', 'Dubai')}>
+  Book now
+</button>
           </div>
 
           <div className='deal-card'>
@@ -111,9 +115,9 @@ const HomeScreen = () => {
               $315 <span>$590</span>
             </div>
 
-            <button className='book-btn' onClick={() => bookNowHandler('Barcelona')}>
-              Book now
-            </button>
+           <button className='book-btn' onClick={() => bookNowHandler('Miami', 'Barcelona')}>
+  Book now
+</button>
           </div>
         </div>
       </section>

@@ -1,22 +1,45 @@
 const cities = [
-  'New York',
-  'London',
   'Paris',
   'Rome',
+  'London',
   'Barcelona',
   'Dubai',
+  'Milan',
+  'New York',
+  'Budapest',
   'Tokyo',
   'Amsterdam',
   'Singapore',
   'Istanbul',
-  'Belgrade',
-  'Budapest',
+  'Sydney',
+  'Prague',
+  'Vienna',
+  'Athens',
+  'Lisbon',
+  'Berlin',
+  'Bangkok',
+  'Venice',
+  'Hong Kong',
+  'Stockholm',
+  'Copenhagen',
+  'Dublin',
+  'Edinburgh',
+  'Reykjavik',
+  'Oslo',
+  'Helsinki',
+  'Brussels',
+  'Zurich',
+  'Madrid',
+  'San Francisco',
+  'Miami',
+  'Los Angeles',
 ]
 
 const FlightSearchForm = ({
   from,
   setFrom,
   to,
+  setTo,
   departure,
   setDeparture,
   returnDate,
@@ -35,7 +58,6 @@ const FlightSearchForm = ({
         <div className='flight-search-box'>
           <div className='trip-buttons'>
             <button className='trip-active'>Round trip</button>
-
             <button className='trip-btn'>One way</button>
           </div>
 
@@ -65,7 +87,13 @@ const FlightSearchForm = ({
               <div className='input-box'>
                 <span>⌖</span>
 
-                <input value={to} disabled />
+                <select value={to} onChange={(e) => setTo(e.target.value)}>
+                  {cities.map((city) => (
+                    <option key={city} value={city}>
+                      {city}
+                    </option>
+                  ))}
+                </select>
               </div>
             </div>
 
