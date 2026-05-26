@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { addToCart, savePaymentMethod } from '../slices/BookingCartSlice'
+import { addBooking } from '../utils/bookingsStorage'
 
 const Payment = ({
   selectedFlight,
@@ -14,9 +15,7 @@ const Payment = ({
 }) => {
   const dispatch = useDispatch()
 
-  const { serviceFee, taxPrice, totalPrice } = useSelector(
-    (state) => state.cart
-  )
+  const { userInfo } = useSelector((state) => state.auth)
 
   const [paymentMethod, setPaymentMethod] = useState('PayPal')
   const [isPaid, setIsPaid] = useState(false)
@@ -55,6 +54,8 @@ const Payment = ({
 
     const newBooking = {
       id: `BK${Date.now()}`,
+      userName: userInfo?.name || 'Guest User',
+      userEmail: userInfo?.email || 'guest@example.com',
       route: `${from} (${airportCodes[from]}) ✈ ${to} (${airportCodes[to]})`,
       date: departure,
       passengers:
@@ -70,14 +71,10 @@ const Payment = ({
       seats: selectedSeats.join(', '),
       paymentMethod: paymentMethod,
       status: 'confirmed',
+      createdAt: new Date().toISOString().slice(0, 10),
     }
 
-    const savedBookings = JSON.parse(localStorage.getItem('bookings')) || []
-
-    localStorage.setItem(
-      'bookings',
-      JSON.stringify([...savedBookings, newBooking])
-    )
+    addBooking(newBooking)
 
     setIsPaid(true)
   }

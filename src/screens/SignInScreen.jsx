@@ -45,6 +45,11 @@ const SignInScreen = () => {
     const isAdminUser =
       enteredEmail.toLowerCase() === 'admin@gmail.com'
 
+    if (isAdminUser && password !== 'adminadmin') {
+      setError('Incorrect administrator password.')
+      return
+    }
+
     const fakeUser = {
       name: isAdminUser
         ? 'Admin'
@@ -174,29 +179,20 @@ const SignInScreen = () => {
 
           <div className='admin-login-box'>
             <p>
-              Demo admin access
+              Administrator access
             </p>
 
             <Button
               type='button'
               className='admin-login-btn'
               onClick={() => {
-                const adminUser = {
-                  name: 'Admin',
-                  email: 'admin@gmail.com',
-                  role: 'admin',
-                  isAdmin: true,
-                }
-
-                dispatch(
-                  setCredentials(adminUser)
-                )
-
-                navigate('/admin')
+                setEmail('admin@gmail.com')
+                setPassword('')
+                setError('Enter the administrator password to continue.')
               }}
             >
               <FaUserShield />
-              <span>Sign in as Administrator</span>
+              <span>Use Administrator Account</span>
             </Button>
           </div>
         </div>
