@@ -37,12 +37,13 @@ const initialBookings = [
 
 const ProfileScreen = () => {
   const [bookings, setBookings] = useState([])
+  const [showEditProfile, setShowEditProfile] = useState(false)
 
   const navigate = useNavigate()
   const dispatch = useDispatch()
 
   const { userInfo } = useSelector((state) => state.auth)
-const [showEditProfile, setShowEditProfile] = useState(false)
+
   useEffect(() => {
     if (!userInfo) {
       navigate('/signin')
@@ -60,32 +61,37 @@ const [showEditProfile, setShowEditProfile] = useState(false)
   }
 
   const deleteHandler = (id) => {
-    const updatedBookings = bookings.filter((booking) => booking.id !== id)
+    const updatedBookings = bookings.filter(
+      (booking) => booking.id !== id
+    )
 
     setBookings(updatedBookings)
 
     const customBookings = updatedBookings.filter(
-      (booking) => booking.id !== 'BK001' && booking.id !== 'BK002'
+      (booking) =>
+        booking.id !== 'BK001' &&
+        booking.id !== 'BK002'
     )
 
-    localStorage.setItem('bookings', JSON.stringify(customBookings))
+    localStorage.setItem(
+      'bookings',
+      JSON.stringify(customBookings)
+    )
   }
 
   return (
     <section className='profile-page'>
       <div className='profile-container'>
+
         <div className='profile-header'>
           <div>
             <h1>My Account</h1>
             <p>Manage your bookings and profile</p>
           </div>
-
-          <button onClick={signOutHandler} className='signout-btn'>
-            Sign Out
-          </button>
         </div>
 
         <div className='profile-layout'>
+
           <div className='profile-card'>
             <div className='profile-user'>
               <div className='profile-avatar'>👤</div>
@@ -96,25 +102,29 @@ const [showEditProfile, setShowEditProfile] = useState(false)
               </div>
             </div>
 
-           <button
-  className='edit-profile-btn'
-  onClick={() => setShowEditProfile(true)}
->
-  Edit Profile
-</button>
-{showEditProfile && (
-  <EditProfile
-    userInfo={userInfo}
-    onClose={() => setShowEditProfile(false)}
-  />
-)}
+            <button
+              className='edit-profile-btn'
+              onClick={() => setShowEditProfile(true)}
+            >
+              Edit Profile
+            </button>
+
+            {showEditProfile && (
+              <EditProfile
+                userInfo={userInfo}
+                onClose={() => setShowEditProfile(false)}
+              />
+            )}
           </div>
 
           <div className='bookings-section'>
             <h2>My Bookings</h2>
 
             {bookings.map((booking) => (
-              <div className='booking-card' key={booking.id}>
+              <div
+                className='booking-card'
+                key={booking.id}
+              >
                 <div className='booking-top'>
                   <span>Booking #{booking.id}</span>
 
@@ -133,14 +143,18 @@ const [showEditProfile, setShowEditProfile] = useState(false)
 
                 <div className='booking-actions'>
                   <button
-                    onClick={() => navigate(`/booking/${booking.id}`)}
+                    onClick={() =>
+                      navigate(`/booking/${booking.id}`)
+                    }
                   >
                     Flight Details
                   </button>
 
                   <button
                     className='delete-btn'
-                    onClick={() => deleteHandler(booking.id)}
+                    onClick={() =>
+                      deleteHandler(booking.id)
+                    }
                   >
                     Delete
                   </button>
@@ -148,6 +162,7 @@ const [showEditProfile, setShowEditProfile] = useState(false)
               </div>
             ))}
           </div>
+
         </div>
       </div>
     </section>

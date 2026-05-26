@@ -30,6 +30,7 @@ body {
   background: var(--bg);
   color: var(--text);
   font-family: var(--font-main);
+  zoom: 88%;
 }
 
 main {
@@ -1285,4 +1286,19 @@ select {
   .destination-detail-image {
     height: 320px;
   }
+}
+
+.signout-btn {
+  background-color: #000;
+  color: white;
+  border: 1px solid #0066ff;
+  border-radius: 12px;
+  padding: 12px 24px;
+  font-weight: 700;
+  margin-left: 20px;
+}
+
+.signout-btn:hover {
+  background-color: #0066ff;
+  color: white;
 }

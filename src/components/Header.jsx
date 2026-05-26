@@ -1,7 +1,20 @@
-import { Navbar, Nav, Container } from 'react-bootstrap';
-import { LinkContainer } from 'react-router-bootstrap';
+import { Navbar, Nav, Container, NavDropdown } from 'react-bootstrap'
+import { LinkContainer } from 'react-router-bootstrap'
+import { useDispatch, useSelector } from 'react-redux'
+import { useNavigate } from 'react-router-dom'
+import { logout } from '../slices/authSlice'
 
 const Header = () => {
+  const dispatch = useDispatch()
+  const navigate = useNavigate()
+
+  const { userInfo } = useSelector((state) => state.auth)
+
+  const logoutHandler = () => {
+    dispatch(logout())
+    navigate('/signin')
+  }
+
   return (
     <header>
       <Navbar className='custom-navbar' expand='lg'>
@@ -37,20 +50,27 @@ const Header = () => {
                 <Nav.Link>Contact</Nav.Link>
               </LinkContainer>
 
-              <LinkContainer to='/signin'>
-                <Nav.Link className='signin-nav-btn'>
-                  Sign In
-                </Nav.Link>
-              </LinkContainer>
+              {userInfo ? (
+                <NavDropdown title={userInfo.name || userInfo.email} id='username'>
+                  <LinkContainer to='/profile'>
+                    <NavDropdown.Item>Profile</NavDropdown.Item>
+                  </LinkContainer>
 
-            
-
+                  <NavDropdown.Item onClick={logoutHandler}>
+                    Logout
+                  </NavDropdown.Item>
+                </NavDropdown>
+              ) : (
+                <LinkContainer to='/signin'>
+                  <Nav.Link className='signin-nav-btn'>Sign In</Nav.Link>
+                </LinkContainer>
+              )}
             </Nav>
           </Navbar.Collapse>
         </Container>
       </Navbar>
     </header>
-  );
-};
+  )
+}
 
-export default Header;
+export default Header

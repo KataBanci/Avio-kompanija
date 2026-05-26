@@ -72,14 +72,15 @@ const FlightsScreen = () => {
   const navigate = useNavigate()
   const { userInfo } = useSelector((state) => state.auth)
 
- const params = new URLSearchParams(location.search)
+  const params = new URLSearchParams(location.search)
 
-const fromFromUrl = params.get('from') || 'New York'
-const destinationFromUrl = params.get('to') || 'London'
+  const fromFromUrl = params.get('from') || 'New York'
+  const destinationFromUrl = params.get('to') || 'London'
 
-const [from, setFrom] = useState(fromFromUrl)
-const [to, setTo] = useState(destinationFromUrl)
+  const [from, setFrom] = useState(fromFromUrl)
+  const [to, setTo] = useState(destinationFromUrl)
 
+  const [tripType, setTripType] = useState('round')
   const [departure, setDeparture] = useState('2026-04-20')
   const [returnDate, setReturnDate] = useState('2026-04-27')
   const [passengers, setPassengers] = useState('1 Passenger')
@@ -92,7 +93,11 @@ const [to, setTo] = useState(destinationFromUrl)
 
   useEffect(() => {
     if (!userInfo) {
-      navigate(`/signin?redirect=${encodeURIComponent(location.pathname + location.search)}`)
+      navigate(
+        `/signin?redirect=${encodeURIComponent(
+          location.pathname + location.search
+        )}`
+      )
     }
   }, [userInfo, navigate, location.pathname, location.search])
 
@@ -125,7 +130,9 @@ const [to, setTo] = useState(destinationFromUrl)
       <SeatSelection
         selectedFlight={selectedFlight}
         travelClass={travelClass}
+        tripType={tripType}
         departure={departure}
+        returnDate={tripType === 'round' ? returnDate : ''}
         from={from}
         to={to}
         airportCodes={airportCodes}
@@ -147,7 +154,9 @@ const [to, setTo] = useState(destinationFromUrl)
           </h2>
 
           <p>
-            {departure} – {returnDate} • {passengers}
+            {tripType === 'round'
+              ? `${departure} – ${returnDate} • ${passengers}`
+              : `${departure} • One way • ${passengers}`}
           </p>
 
           <div className='travel-class-box'>
@@ -205,19 +214,21 @@ const [to, setTo] = useState(destinationFromUrl)
   }
 
   return (
-   <FlightSearchForm
-  from={from}
-  setFrom={setFrom}
-  to={to}
-  setTo={setTo}
-  departure={departure}
-  setDeparture={setDeparture}
-  returnDate={returnDate}
-  setReturnDate={setReturnDate}
-  passengers={passengers}
-  setPassengers={setPassengers}
-  searchHandler={searchHandler}
-/>
+    <FlightSearchForm
+      tripType={tripType}
+      setTripType={setTripType}
+      from={from}
+      setFrom={setFrom}
+      to={to}
+      setTo={setTo}
+      departure={departure}
+      setDeparture={setDeparture}
+      returnDate={returnDate}
+      setReturnDate={setReturnDate}
+      passengers={passengers}
+      setPassengers={setPassengers}
+      searchHandler={searchHandler}
+    />
   )
 }
 

@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { Link, useNavigate, useLocation } from 'react-router-dom'
-import { Form, Button, Row, Col } from 'react-bootstrap'
+import { Form, Button, Row, Col, Alert } from 'react-bootstrap'
 import { FaSignInAlt } from 'react-icons/fa'
 import { useDispatch } from 'react-redux'
 import { setCredentials } from '../slices/authSlice'
@@ -10,6 +10,7 @@ const SignInScreen = () => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [showForgot, setShowForgot] = useState(false)
+  const [error, setError] = useState('')
 
   const dispatch = useDispatch()
   const navigate = useNavigate()
@@ -20,10 +21,28 @@ const SignInScreen = () => {
 
   const submitHandler = (e) => {
     e.preventDefault()
+    setError('')
+
+    const enteredEmail = email.trim()
+
+    if (!enteredEmail || !password) {
+      setError('You must enter Gmail and password.')
+      return
+    }
+
+    if (!enteredEmail.toLowerCase().endsWith('@gmail.com')) {
+      setError('Please enter a valid Gmail address, for example name@gmail.com.')
+      return
+    }
+
+    if (password.length < 6) {
+      setError('Password must have at least 6 characters.')
+      return
+    }
 
     const fakeUser = {
-      name: 'Kata',
-      email,
+      name: enteredEmail.split('@')[0],
+      email: enteredEmail,
     }
 
     dispatch(setCredentials(fakeUser))
@@ -52,6 +71,8 @@ const SignInScreen = () => {
             Access your account to manage bookings and preferences
           </p>
 
+          {error && <Alert variant='danger'>{error}</Alert>}
+
           <Form onSubmit={submitHandler} className='signin-form'>
             <Form.Group className='mb-3' controlId='email'>
               <Form.Label>Email Address</Form.Label>
@@ -61,6 +82,7 @@ const SignInScreen = () => {
                 placeholder='your@email.com'
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
+                required
               />
             </Form.Group>
 
@@ -72,6 +94,8 @@ const SignInScreen = () => {
                 placeholder='Enter your password'
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
+                required
+                minLength='6'
               />
             </Form.Group>
 

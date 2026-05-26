@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { Link, useLocation, useNavigate } from 'react-router-dom'
-import { Form, Button } from 'react-bootstrap'
+import { Form, Button, Alert } from 'react-bootstrap'
 import { FaUserPlus } from 'react-icons/fa'
 import { useDispatch } from 'react-redux'
 import { setCredentials } from '../slices/authSlice'
@@ -11,6 +11,8 @@ const RegisterScreen = () => {
   const [phone, setPhone] = useState('')
   const [password, setPassword] = useState('')
   const [confirmPassword, setConfirmPassword] = useState('')
+  const [termsAccepted, setTermsAccepted] = useState(false)
+  const [error, setError] = useState('')
 
   const dispatch = useDispatch()
   const navigate = useNavigate()
@@ -21,16 +23,41 @@ const RegisterScreen = () => {
 
   const submitHandler = (e) => {
     e.preventDefault()
+    setError('')
+
+    const enteredName = name.trim()
+    const enteredEmail = email.trim()
+    const enteredPhone = phone.trim()
+
+    if (!enteredName || !enteredEmail || !enteredPhone || !password || !confirmPassword) {
+      setError('All fields must be filled in.')
+      return
+    }
+
+    if (!enteredEmail.toLowerCase().endsWith('@gmail.com')) {
+      setError('Please enter a valid Gmail address, for example name@gmail.com.')
+      return
+    }
+
+    if (password.length < 6) {
+      setError('Password must have at least 6 characters.')
+      return
+    }
 
     if (password !== confirmPassword) {
-      alert('Passwords do not match')
+      setError('Passwords do not match.')
+      return
+    }
+
+    if (!termsAccepted) {
+      setError('You must agree to the Terms and Conditions.')
       return
     }
 
     const fakeUser = {
-      name,
-      email,
-      phone,
+      name: enteredName,
+      email: enteredEmail,
+      phone: enteredPhone,
     }
 
     dispatch(setCredentials(fakeUser))
@@ -65,6 +92,8 @@ const RegisterScreen = () => {
             offers.
           </p>
 
+          {error && <Alert variant='danger'>{error}</Alert>}
+
           <Form onSubmit={submitHandler} className='register-form'>
             <Form.Group controlId='name' className='mb-3'>
               <Form.Label>Full Name</Form.Label>
@@ -74,6 +103,7 @@ const RegisterScreen = () => {
                 placeholder='John Doe'
                 value={name}
                 onChange={(e) => setName(e.target.value)}
+                required
               />
             </Form.Group>
 
@@ -85,6 +115,7 @@ const RegisterScreen = () => {
                 placeholder='your@email.com'
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
+                required
               />
             </Form.Group>
 
@@ -96,6 +127,7 @@ const RegisterScreen = () => {
                 placeholder='+1 234 567 8900'
                 value={phone}
                 onChange={(e) => setPhone(e.target.value)}
+                required
               />
             </Form.Group>
 
@@ -107,6 +139,8 @@ const RegisterScreen = () => {
                 placeholder='Create a secure password'
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
+                required
+                minLength='6'
               />
             </Form.Group>
 
@@ -118,6 +152,8 @@ const RegisterScreen = () => {
                 placeholder='Confirm your password'
                 value={confirmPassword}
                 onChange={(e) => setConfirmPassword(e.target.value)}
+                required
+                minLength='6'
               />
             </Form.Group>
 
@@ -126,6 +162,9 @@ const RegisterScreen = () => {
               id='terms'
               className='terms-check'
               label='I agree to the Terms and Conditions'
+              checked={termsAccepted}
+              onChange={(e) => setTermsAccepted(e.target.checked)}
+              required
             />
 
             <Button type='submit' className='register-btn'>

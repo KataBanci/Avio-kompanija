@@ -36,6 +36,8 @@ const cities = [
 ]
 
 const FlightSearchForm = ({
+  tripType,
+  setTripType,
   from,
   setFrom,
   to,
@@ -57,8 +59,21 @@ const FlightSearchForm = ({
 
         <div className='flight-search-box'>
           <div className='trip-buttons'>
-            <button className='trip-active'>Round trip</button>
-            <button className='trip-btn'>One way</button>
+            <button
+              type='button'
+              className={tripType === 'round' ? 'trip-active' : 'trip-btn'}
+              onClick={() => setTripType('round')}
+            >
+              Round trip
+            </button>
+
+            <button
+              type='button'
+              className={tripType === 'oneway' ? 'trip-active' : 'trip-btn'}
+              onClick={() => setTripType('oneway')}
+            >
+              One way
+            </button>
           </div>
 
           <div className='flight-form-grid'>
@@ -111,19 +126,21 @@ const FlightSearchForm = ({
               </div>
             </div>
 
-            <div className='form-group'>
-              <label>Return</label>
+            {tripType === 'round' && (
+              <div className='form-group'>
+                <label>Return</label>
 
-              <div className='input-box'>
-                <span>▣</span>
+                <div className='input-box'>
+                  <span>▣</span>
 
-                <input
-                  type='date'
-                  value={returnDate}
-                  onChange={(e) => setReturnDate(e.target.value)}
-                />
+                  <input
+                    type='date'
+                    value={returnDate}
+                    onChange={(e) => setReturnDate(e.target.value)}
+                  />
+                </div>
               </div>
-            </div>
+            )}
 
             <div className='form-group'>
               <label>Passengers</label>
@@ -144,7 +161,11 @@ const FlightSearchForm = ({
             </div>
           </div>
 
-          <button className='search-flight-btn' onClick={searchHandler}>
+          <button
+            type='button'
+            className='search-flight-btn'
+            onClick={searchHandler}
+          >
             ⌕ Search flights
           </button>
         </div>
