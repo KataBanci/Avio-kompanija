@@ -1,5 +1,5 @@
 :root {
-  --font-main: Calibri, Arial, sans-serif;
+  --font-main: 'Trebuchet MS', Arial, sans-serif;
   --bg: #fafafa;
   --bg-soft: #f7f7f7;
   --white: #fff;
@@ -818,6 +818,51 @@ select {
   color: var(--black);
   font-size: 15px;
   font-weight: 500;
+}
+
+.admin-login-box {
+  margin-top: 28px;
+  padding-top: 24px;
+  border-top: 1px solid var(--line-soft);
+  text-align: center;
+}
+
+.admin-login-box p {
+  margin-bottom: 12px;
+  color: var(--muted);
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.admin-login-btn {
+  width: 100%;
+  min-height: 54px;
+  display: inline-flex !important;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  border: 1px solid #111 !important;
+  border-radius: 14px !important;
+  background: #111 !important;
+  color: var(--white) !important;
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.16);
+  font-size: 16px !important;
+  font-weight: 800 !important;
+}
+
+.admin-login-btn:hover,
+.admin-login-btn:focus {
+  background: var(--white) !important;
+  color: var(--black) !important;
+  transform: translateY(-2px);
+  box-shadow: 0 16px 30px rgba(0, 0, 0, 0.2);
+}
+
+.admin-login-btn svg {
+  flex: 0 0 auto;
+  font-size: 18px;
 }
 
 .forgot-modal {

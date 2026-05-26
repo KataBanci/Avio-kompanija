@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { Link, useNavigate, useLocation } from 'react-router-dom'
 import { Form, Button, Row, Col, Alert } from 'react-bootstrap'
-import { FaSignInAlt } from 'react-icons/fa'
+import { FaSignInAlt, FaUserShield } from 'react-icons/fa'
 import { useDispatch } from 'react-redux'
 import { setCredentials } from '../slices/authSlice'
 import ForgotPasswordModal from '../components/ForgotPasswordModal'
@@ -31,7 +31,9 @@ const SignInScreen = () => {
     }
 
     if (!enteredEmail.toLowerCase().endsWith('@gmail.com')) {
-      setError('Please enter a valid Gmail address, for example name@gmail.com.')
+      setError(
+        'Please enter a valid Gmail address, for example name@gmail.com.'
+      )
       return
     }
 
@@ -40,13 +42,28 @@ const SignInScreen = () => {
       return
     }
 
+    const isAdminUser =
+      enteredEmail.toLowerCase() === 'admin@gmail.com'
+
     const fakeUser = {
-      name: enteredEmail.split('@')[0],
+      name: isAdminUser
+        ? 'Admin'
+        : enteredEmail.split('@')[0],
+
       email: enteredEmail,
+
+      role: isAdminUser ? 'admin' : 'user',
+
+      isAdmin: isAdminUser,
     }
 
     dispatch(setCredentials(fakeUser))
-    navigate(redirect)
+
+    if (fakeUser.isAdmin) {
+      navigate('/admin')
+    } else {
+      navigate(redirect)
+    }
   }
 
   return (
@@ -71,29 +88,48 @@ const SignInScreen = () => {
             Access your account to manage bookings and preferences
           </p>
 
-          {error && <Alert variant='danger'>{error}</Alert>}
+          {error && (
+            <Alert variant='danger'>
+              {error}
+            </Alert>
+          )}
 
-          <Form onSubmit={submitHandler} className='signin-form'>
-            <Form.Group className='mb-3' controlId='email'>
-              <Form.Label>Email Address</Form.Label>
+          <Form
+            onSubmit={submitHandler}
+            className='signin-form'
+          >
+            <Form.Group
+              className='mb-3'
+              controlId='email'
+            >
+              <Form.Label>
+                Email Address
+              </Form.Label>
 
               <Form.Control
                 type='email'
                 placeholder='your@email.com'
                 value={email}
-                onChange={(e) => setEmail(e.target.value)}
+                onChange={(e) =>
+                  setEmail(e.target.value)
+                }
                 required
               />
             </Form.Group>
 
-            <Form.Group className='mb-3' controlId='password'>
+            <Form.Group
+              className='mb-3'
+              controlId='password'
+            >
               <Form.Label>Password</Form.Label>
 
               <Form.Control
                 type='password'
                 placeholder='Enter your password'
                 value={password}
-                onChange={(e) => setPassword(e.target.value)}
+                onChange={(e) =>
+                  setPassword(e.target.value)
+                }
                 required
                 minLength='6'
               />
@@ -110,7 +146,9 @@ const SignInScreen = () => {
               <button
                 type='button'
                 className='forgot-link-btn'
-                onClick={() => setShowForgot(true)}
+                onClick={() =>
+                  setShowForgot(true)
+                }
               >
                 Forgot password?
               </button>
@@ -133,12 +171,42 @@ const SignInScreen = () => {
               </Link>
             </Col>
           </Row>
+
+          <div className='admin-login-box'>
+            <p>
+              Demo admin access
+            </p>
+
+            <Button
+              type='button'
+              className='admin-login-btn'
+              onClick={() => {
+                const adminUser = {
+                  name: 'Admin',
+                  email: 'admin@gmail.com',
+                  role: 'admin',
+                  isAdmin: true,
+                }
+
+                dispatch(
+                  setCredentials(adminUser)
+                )
+
+                navigate('/admin')
+              }}
+            >
+              <FaUserShield />
+              <span>Sign in as Administrator</span>
+            </Button>
+          </div>
         </div>
       </div>
 
       {showForgot && (
         <ForgotPasswordModal
-          onClose={() => setShowForgot(false)}
+          onClose={() =>
+            setShowForgot(false)
+          }
         />
       )}
     </div>

@@ -25,6 +25,8 @@ import RegisterScreen from './screens/RegisterScreen'
 import DestinationDetailsScreen from './screens/DestinationDetailsScreen'
 import ProfileScreen from './screens/ProfileScreen'
 import BookingDetailsScreen from './screens/BookingDetailsScreen'
+import AdminRoute from './components/AdminRoute'
+import AdminPanelScreen from './screens/AdminPanelScreen'
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -41,6 +43,9 @@ const router = createBrowserRouter(
         <Route path='flights' element={<FlightsScreen />} />
         <Route path='profile' element={<ProfileScreen />} />
         <Route path='booking/:id' element={<BookingDetailsScreen />} />
+<Route element={<AdminRoute />}>
+  <Route path='admin' element={<AdminPanelScreen />} />
+</Route>
       </Route>
     </Route>
   )
