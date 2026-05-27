@@ -43,9 +43,10 @@ const router = createBrowserRouter(
         <Route path='flights' element={<FlightsScreen />} />
         <Route path='profile' element={<ProfileScreen />} />
         <Route path='booking/:id' element={<BookingDetailsScreen />} />
-<Route element={<AdminRoute />}>
-  <Route path='admin' element={<AdminPanelScreen />} />
-</Route>
+
+        <Route element={<AdminRoute />}>
+          <Route path='admin' element={<AdminPanelScreen />} />
+        </Route>
       </Route>
     </Route>
   )
