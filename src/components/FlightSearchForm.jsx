@@ -1,4 +1,5 @@
 const cities = [
+  'Belgrade',
   'Paris',
   'Rome',
   'London',

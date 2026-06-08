@@ -5,49 +5,7 @@ import { useSelector } from 'react-redux'
 import FlightCard from '../components/FlightCard'
 import SeatSelection from '../components/SeatSelection'
 import FlightSearchForm from '../components/FlightSearchForm'
-
-const flights = [
-  {
-    airline: 'British Airways BA 178',
-    fromTime: '19:30',
-    toTime: '07:15',
-    duration: '6h 45m',
-    economyPrice: 542,
-    businessPrice: 920,
-  },
-  {
-    airline: 'American Airlines AA 100',
-    fromTime: '22:00',
-    toTime: '10:05',
-    duration: '7h 05m',
-    economyPrice: 489,
-    businessPrice: 850,
-  },
-  {
-    airline: 'Virgin Atlantic VS 4',
-    fromTime: '18:15',
-    toTime: '06:20',
-    duration: '7h 05m',
-    economyPrice: 615,
-    businessPrice: 1050,
-  },
-  {
-    airline: 'Delta Airlines DL 45',
-    fromTime: '15:40',
-    toTime: '03:55',
-    duration: '7h 15m',
-    economyPrice: 530,
-    businessPrice: 980,
-  },
-  {
-    airline: 'United Airlines UA 90',
-    fromTime: '21:10',
-    toTime: '09:25',
-    duration: '7h 15m',
-    economyPrice: 575,
-    businessPrice: 1010,
-  },
-]
+import { useGetFlightsQuery } from '../slices/FlightApiSlice'
 
 const airportCodes = {
   'New York': 'JFK',
@@ -72,10 +30,12 @@ const FlightsScreen = () => {
   const navigate = useNavigate()
   const { userInfo } = useSelector((state) => state.auth)
 
+  const { data: flights = [], isLoading, error } = useGetFlightsQuery()
+
   const params = new URLSearchParams(location.search)
 
-  const fromFromUrl = params.get('from') || 'New York'
-  const destinationFromUrl = params.get('to') || 'London'
+  const fromFromUrl = params.get('from') || 'Belgrade'
+  const destinationFromUrl = params.get('to') || 'Paris'
 
   const [from, setFrom] = useState(fromFromUrl)
   const [to, setTo] = useState(destinationFromUrl)
@@ -124,6 +84,12 @@ const FlightsScreen = () => {
 
     setShowSeats(true)
   }
+
+  const searchedFlights = flights.filter(
+    (flight) =>
+      flight.from.toLowerCase() === from.toLowerCase() &&
+      flight.to.toLowerCase() === to.toLowerCase()
+  )
 
   if (showSeats) {
     return (
@@ -181,33 +147,48 @@ const FlightsScreen = () => {
             </div>
           </div>
 
-          <div className='results-top'>
-            <p>{flights.length} flights available</p>
+          {isLoading ? (
+            <h3>Loading flights...</h3>
+          ) : error ? (
+            <h3>Error loading flights</h3>
+          ) : (
+            <>
+              <div className='results-top'>
+                <p>{searchedFlights.length} flights available</p>
 
-            <div>
-              <button>Price</button>
-              <button>Duration</button>
-              <button>Departure</button>
-            </div>
-          </div>
+                <div>
+                  <button>Price</button>
+                  <button>Duration</button>
+                  <button>Departure</button>
+                </div>
+              </div>
 
-          <div className='flights-list'>
-            {flights.map((flight, index) => (
-              <FlightCard
-                key={index}
-                flight={flight}
-                fromCode={airportCodes[from]}
-                toCode={airportCodes[to]}
-                travelClass={travelClass}
-                selectedFlight={selectedFlight}
-                setSelectedFlight={setSelectedFlight}
-              />
-            ))}
-          </div>
+              <div className='flights-list'>
+                {searchedFlights.map((flight) => (
+                  <FlightCard
+                    key={flight._id}
+                    flight={{
+                      ...flight,
+                      fromTime: flight.departureTime,
+                      toTime: flight.arrivalTime,
+                      duration: '2h 30m',
+                      economyPrice: flight.price,
+                      businessPrice: flight.price + 150,
+                    }}
+                    fromCode={airportCodes[from]}
+                    toCode={airportCodes[to]}
+                    travelClass={travelClass}
+                    selectedFlight={selectedFlight}
+                    setSelectedFlight={setSelectedFlight}
+                  />
+                ))}
+              </div>
 
-          <button className='continue-seat-btn' onClick={continueHandler}>
-            Continue to seat selection
-          </button>
+              <button className='continue-seat-btn' onClick={continueHandler}>
+                Continue to seat selection
+              </button>
+            </>
+          )}
         </div>
       </section>
     )

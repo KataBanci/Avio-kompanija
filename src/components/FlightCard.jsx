@@ -3,9 +3,11 @@ const FlightCard = ({
   travelClass,
   selectedFlight,
   setSelectedFlight,
-  from,
-  to,
+  fromCode,
+  toCode,
 }) => {
+  const isSelected = selectedFlight?._id === flight._id
+
   return (
     <div className='result-flight-card'>
       <div className='airline-name'>
@@ -15,7 +17,7 @@ const FlightCard = ({
       <div className='flight-times'>
         <div>
           <h3>{flight.fromTime}</h3>
-          <span>{from}</span>
+          <span>{fromCode}</span>
         </div>
 
         <div className='flight-line'>
@@ -26,7 +28,7 @@ const FlightCard = ({
 
         <div>
           <h3>{flight.toTime}</h3>
-          <span>{to}</span>
+          <span>{toCode}</span>
         </div>
 
         <div className='result-price'>
@@ -39,15 +41,9 @@ const FlightCard = ({
 
           <button
             onClick={() => setSelectedFlight(flight)}
-            className={
-              selectedFlight?.airline === flight.airline
-                ? 'selected-btn'
-                : ''
-            }
+            className={isSelected ? 'selected-btn' : ''}
           >
-            {selectedFlight?.airline === flight.airline
-              ? 'Selected'
-              : 'Select'}
+            {isSelected ? 'Selected' : 'Select'}
           </button>
         </div>
       </div>

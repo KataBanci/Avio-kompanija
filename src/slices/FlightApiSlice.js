@@ -1,21 +1,26 @@
-import { PRODUCT_URL } from "../constants";
-import { apiSlice } from "./apiSlice";
+import { FLIGHTS_URL } from '../constants'
+import { apiSlice } from './apiSlice'
 
-export const productsApiSlice = apiSlice.injectEndpoints({
-    endpoints: (builder) => ({
-        getProducts: builder.query({
-            query: () => ({
-                url: PRODUCT_URL,
-            }),
-            keepUnusedDataFor: 5,
-        }),
-        getProductDetails: builder.query({
-            query: (productId) => ({
-                url: `${PRODUCT_URL}/${productId}`,
-            }),
-            keepUnusedDataFor: 5,
-        }),
-    })
+export const flightsApiSlice = apiSlice.injectEndpoints({
+  endpoints: (builder) => ({
+    getFlights: builder.query({
+      query: () => ({
+        url: FLIGHTS_URL,
+      }),
+      keepUnusedDataFor: 5,
+      providesTags: ['Flight'],
+    }),
+
+    getFlightDetails: builder.query({
+      query: (flightId) => ({
+        url: `${FLIGHTS_URL}/${flightId}`,
+      }),
+      keepUnusedDataFor: 5,
+    }),
+  }),
 })
 
-export const { useGetProductsQuery, useGetProductDetailsQuery } = productsApiSlice;
+export const {
+  useGetFlightsQuery,
+  useGetFlightDetailsQuery,
+} = flightsApiSlice
