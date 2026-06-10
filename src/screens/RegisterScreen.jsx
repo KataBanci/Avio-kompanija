@@ -4,6 +4,7 @@ import { Form, Button, Alert } from 'react-bootstrap'
 import { FaUserPlus } from 'react-icons/fa'
 import { useDispatch } from 'react-redux'
 import { setCredentials } from '../slices/authSlice'
+import { useRegisterMutation } from '../slices/usersApiSlice'
 
 const RegisterScreen = () => {
   const [name, setName] = useState('')
@@ -16,12 +17,13 @@ const RegisterScreen = () => {
 
   const dispatch = useDispatch()
   const navigate = useNavigate()
+  const [register, { isLoading }] = useRegisterMutation()
 
   const { search } = useLocation()
   const sp = new URLSearchParams(search)
   const redirect = sp.get('redirect') || '/'
 
-  const submitHandler = (e) => {
+  const submitHandler = async (e) => {
     e.preventDefault()
     setError('')
 
@@ -31,11 +33,6 @@ const RegisterScreen = () => {
 
     if (!enteredName || !enteredEmail || !enteredPhone || !password || !confirmPassword) {
       setError('All fields must be filled in.')
-      return
-    }
-
-    if (!enteredEmail.toLowerCase().endsWith('@gmail.com')) {
-      setError('Please enter a valid Gmail address, for example name@gmail.com.')
       return
     }
 
@@ -54,14 +51,18 @@ const RegisterScreen = () => {
       return
     }
 
-    const fakeUser = {
-      name: enteredName,
-      email: enteredEmail,
-      phone: enteredPhone,
-    }
+    try {
+      const user = await register({
+        name: enteredName,
+        email: enteredEmail,
+        password,
+      }).unwrap()
 
-    dispatch(setCredentials(fakeUser))
-    navigate(redirect)
+      dispatch(setCredentials(user))
+      navigate(redirect)
+    } catch (error) {
+      setError(error?.data?.message || 'Account could not be created.')
+    }
   }
 
   return (
@@ -167,8 +168,8 @@ const RegisterScreen = () => {
               required
             />
 
-            <Button type='submit' className='register-btn'>
-              Create Account
+            <Button type='submit' className='register-btn' disabled={isLoading}>
+              {isLoading ? 'Creating account...' : 'Create Account'}
             </Button>
           </Form>
 

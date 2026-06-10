@@ -33,6 +33,28 @@ export const bookingsApiSlice = apiSlice.injectEndpoints({
       keepUnusedDataFor: 5,
     }),
 
+    getBookings: builder.query({
+      query: () => ({
+        url: BOOKINGS_URL,
+      }),
+      keepUnusedDataFor: 5,
+    }),
+
+    updateBookingStatus: builder.mutation({
+      query: ({ bookingId, status }) => ({
+        url: `${BOOKINGS_URL}/${bookingId}/status`,
+        method: 'PUT',
+        body: { status },
+      }),
+    }),
+
+    deleteBooking: builder.mutation({
+      query: (bookingId) => ({
+        url: `${BOOKINGS_URL}/${bookingId}`,
+        method: 'DELETE',
+      }),
+    }),
+
     getPaypalClientId: builder.query({
       query: () => ({
         url: PAYPAL_URL,
@@ -47,5 +69,8 @@ export const {
   useGetBookingDetailsQuery,
   usePayBookingMutation,
   useGetMyBookingsQuery,
+  useGetBookingsQuery,
+  useUpdateBookingStatusMutation,
+  useDeleteBookingMutation,
   useGetPaypalClientIdQuery,
 } = bookingsApiSlice

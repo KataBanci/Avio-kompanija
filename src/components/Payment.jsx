@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { addToCart, savePaymentMethod } from '../slices/BookingCartSlice'
-import { addBooking } from '../utils/bookingsStorage'
+import { useCreateBookingMutation } from '../slices/BookingApiSlice'
 
 const Payment = ({
   selectedFlight,
@@ -19,6 +19,8 @@ const Payment = ({
 
   const [paymentMethod, setPaymentMethod] = useState('PayPal')
   const [isPaid, setIsPaid] = useState(false)
+  const [bookingError, setBookingError] = useState('')
+  const [createBooking, { isLoading }] = useCreateBookingMutation()
 
   const price =
     travelClass === 'economy'
@@ -32,7 +34,7 @@ const Payment = ({
     dispatch(savePaymentMethod(method))
   }
 
-  const saveBookingHandler = () => {
+  const saveBookingHandler = async () => {
     const cartItem = {
       _id: `${selectedFlight.airline}-${from}-${to}-${departure}-${travelClass}`,
       name: `${from} to ${to}`,
@@ -52,31 +54,27 @@ const Payment = ({
     const tax = ticketsTotal * 0.15
     const finalTotal = ticketsTotal + service + tax
 
-    const newBooking = {
-      id: `BK${Date.now()}`,
-      userName: userInfo?.name || 'Guest User',
-      userEmail: userInfo?.email || 'guest@example.com',
-      route: `${from} (${airportCodes[from]}) ✈ ${to} (${airportCodes[to]})`,
-      date: departure,
-      passengers:
-        selectedSeats.length === 1
-          ? '1 passenger'
-          : `${selectedSeats.length} passengers`,
-      price: `$${finalTotal.toFixed(2)}`,
-      airline: selectedFlight.airline,
-      departure: selectedFlight.fromTime,
-      arrival: selectedFlight.toTime,
-      duration: selectedFlight.duration,
-      classType: travelClass === 'economy' ? 'Economy' : 'Business',
-      seats: selectedSeats.join(', '),
-      paymentMethod: paymentMethod,
-      status: 'confirmed',
-      createdAt: new Date().toISOString().slice(0, 10),
+    try {
+      setBookingError('')
+
+      await createBooking({
+        flight: selectedFlight._id,
+        passengerName: userInfo?.name,
+        passengerEmail: userInfo?.email,
+        passengerPhone: 'N/A',
+        numberOfTickets: selectedSeats.length,
+        seats: selectedSeats,
+        travelClass: travelClass === 'economy' ? 'Economy' : 'Business',
+        totalPrice: Number(finalTotal.toFixed(2)),
+        paymentMethod,
+      }).unwrap()
+
+      setIsPaid(true)
+    } catch (error) {
+      setBookingError(
+        error?.data?.message || 'Booking could not be saved. Please try again.'
+      )
     }
-
-    addBooking(newBooking)
-
-    setIsPaid(true)
   }
 
   const service = ticketsTotal > 500 ? 0 : 20
@@ -181,8 +179,16 @@ const Payment = ({
               <div className='payment-box'>
                 <p>Click the button below to proceed with PayPal payment</p>
 
-                <button className='pay-btn' onClick={saveBookingHandler}>
-                  Pay ${finalTotal.toFixed(2)} with PayPal
+                {bookingError && <p>{bookingError}</p>}
+
+                <button
+                  className='pay-btn'
+                  onClick={saveBookingHandler}
+                  disabled={isLoading}
+                >
+                  {isLoading
+                    ? 'Saving booking...'
+                    : `Pay $${finalTotal.toFixed(2)} with PayPal`}
                 </button>
               </div>
             ) : (
@@ -207,8 +213,14 @@ const Payment = ({
 
                 <input type='text' placeholder='John Doe' />
 
-                <button className='pay-btn' onClick={saveBookingHandler}>
-                  Pay ${finalTotal.toFixed(2)}
+                {bookingError && <p>{bookingError}</p>}
+
+                <button
+                  className='pay-btn'
+                  onClick={saveBookingHandler}
+                  disabled={isLoading}
+                >
+                  {isLoading ? 'Saving booking...' : `Pay $${finalTotal.toFixed(2)}`}
                 </button>
               </div>
             )}

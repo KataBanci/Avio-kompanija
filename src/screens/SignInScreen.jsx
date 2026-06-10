@@ -5,6 +5,7 @@ import { FaSignInAlt, FaUserShield } from 'react-icons/fa'
 import { useDispatch } from 'react-redux'
 import { setCredentials } from '../slices/authSlice'
 import ForgotPasswordModal from '../components/ForgotPasswordModal'
+import { useLoginMutation } from '../slices/usersApiSlice'
 
 const SignInScreen = () => {
   const [email, setEmail] = useState('')
@@ -14,12 +15,13 @@ const SignInScreen = () => {
 
   const dispatch = useDispatch()
   const navigate = useNavigate()
+  const [login, { isLoading }] = useLoginMutation()
 
   const { search } = useLocation()
   const sp = new URLSearchParams(search)
   const redirect = sp.get('redirect') || '/profile'
 
-  const submitHandler = (e) => {
+  const submitHandler = async (e) => {
     e.preventDefault()
     setError('')
 
@@ -30,44 +32,26 @@ const SignInScreen = () => {
       return
     }
 
-    if (!enteredEmail.toLowerCase().endsWith('@gmail.com')) {
-      setError(
-        'Please enter a valid Gmail address, for example name@gmail.com.'
-      )
-      return
-    }
-
     if (password.length < 6) {
       setError('Password must have at least 6 characters.')
       return
     }
 
-    const isAdminUser =
-      enteredEmail.toLowerCase() === 'admin@gmail.com'
+    try {
+      const user = await login({
+        email: enteredEmail,
+        password,
+      }).unwrap()
 
-    if (isAdminUser && password !== 'adminadmin') {
-      setError('Incorrect administrator password.')
-      return
-    }
+      dispatch(setCredentials(user))
 
-    const fakeUser = {
-      name: isAdminUser
-        ? 'Admin'
-        : enteredEmail.split('@')[0],
-
-      email: enteredEmail,
-
-      role: isAdminUser ? 'admin' : 'user',
-
-      isAdmin: isAdminUser,
-    }
-
-    dispatch(setCredentials(fakeUser))
-
-    if (fakeUser.isAdmin) {
-      navigate('/admin')
-    } else {
-      navigate(redirect)
+      if (user.isAdmin) {
+        navigate('/admin')
+      } else {
+        navigate(redirect)
+      }
+    } catch (error) {
+      setError(error?.data?.message || 'Invalid email or password.')
     }
   }
 
@@ -162,8 +146,9 @@ const SignInScreen = () => {
             <Button
               type='submit'
               className='signin-btn-large'
+              disabled={isLoading}
             >
-              Sign In
+              {isLoading ? 'Signing in...' : 'Sign In'}
             </Button>
           </Form>
 
@@ -186,7 +171,7 @@ const SignInScreen = () => {
               type='button'
               className='admin-login-btn'
               onClick={() => {
-                setEmail('admin@gmail.com')
+                setEmail('admin@example.com')
                 setPassword('')
                 setError('Enter the administrator password to continue.')
               }}
